@@ -1,7 +1,7 @@
 import React from "react"
 
 
-const Mobile = ({categories})=> {
+const MobileNav = ({categories})=> {
     const [open, setOpen] = React.useState(false)
 
     const handleDrawer = () => {
@@ -10,9 +10,9 @@ const Mobile = ({categories})=> {
 
     return (
         <div>
-            s
+
         </div>
     )
 }
 
-export default Mobiles
+export default MobileNav

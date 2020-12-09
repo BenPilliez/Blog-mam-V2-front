@@ -5,16 +5,32 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import 'fontsource-roboto'
 import thunk from "redux-thunk"
-import {applyMiddleware, store} from "react-redux"
+import {CssBaseline} from "@material-ui/core"
+import {applyMiddleware, createStore} from "redux"
+import rootReducer from "./store/reducers/rootReducers"
+import {Provider} from "react-redux"
+import {axiosInstance, setAuthorization} from "./config/axiosConfig"
+import {localStorageTokenConfig} from "./config/localStorageToken"
+import {library} from "@fortawesome/fontawesome-svg-core"
+import {faHome} from "@fortawesome/free-solid-svg-icons"
 
+library.add(faHome)
 
+const token = localStorage.getItem('token')
+if (token) {
+    setAuthorization(axiosInstance, token)
+}
+localStorageTokenConfig()
+
+const store = createStore(rootReducer, applyMiddleware(thunk.withExtraArgument({axiosInstance})))
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+    <Provider store={store}>
+        <CssBaseline/>
+        <App/>
+    </Provider>,
+    document.getElementById('root')
+)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
