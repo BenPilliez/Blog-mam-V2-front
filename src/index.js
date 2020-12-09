@@ -1,8 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import App from './App'
+import reportWebVitals from './reportWebVitals'
+import 'fontsource-roboto'
+import thunk from "redux-thunk"
+import {applyMiddleware, store} from "react-redux"
+
+
 
 ReactDOM.render(
   <React.StrictMode>
