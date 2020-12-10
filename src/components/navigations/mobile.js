@@ -16,6 +16,12 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import ThemeSwitch from "./themeSwitch"
 
 const useStyles = makeStyles((theme) => ({
+    MuiDrawer: {
+        backgroundColor: theme.palette.primary.main
+    },
+    MuiButton: {
+        color: 'white',
+    },
     list: {
         width: 250
     },
@@ -23,16 +29,16 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'center'
     },
-    header:{
-      display:'flex',
-      justifyContent: 'space-between'
+    header: {
+        display: 'flex',
+        justifyContent: 'space-between'
     },
     nested: {
         paddingLeft: theme.spacing(4)
     }
 }))
 
-const MobileNav = ({categories, isDark, handleChange}) => {
+const MobileNav = ({categories, isDark, handleChange, handleOpen}) => {
     const [open, setOpen] = React.useState(false)
     const [openCategories, setOpenCategories] = React.useState(false)
     const classes = useStyles()
@@ -52,17 +58,16 @@ const MobileNav = ({categories, isDark, handleChange}) => {
                     <Button variant={"contained"} endIcon={<FontAwesomeIcon icon={'bars'}/>} color={"primary"}
                             onClick={handleDrawer}>Menu</Button>
                 </Toolbar>
-
-                <Drawer anchor={"bottom"} open={open} onClose={handleDrawer}>
+                <Drawer classes={{paper: classes.MuiDrawer}} anchor={"bottom"} open={open} onClose={handleDrawer}>
                     <List>
                         <div className={classes.header}>
-                            <ListItem button component={RouterLink} to={"/"}>
+                            <ListItem classes={{button: classes.MuiButton}} button component={RouterLink} to={"/"}>
                                 <ListItemIcon>
-                                    <FontAwesomeIcon icon={'home'}/>
+                                    <FontAwesomeIcon size={"lg"} icon={'home'}/>
                                 </ListItemIcon>
                                 <ListItemText primary={'Accueil'}/>
                             </ListItem>
-                            <ListItem button>
+                            <ListItem classes={{button: classes.MuiButton}} button>
                                 <ListItemIcon>
                                     <ThemeSwitch
                                         handleChange={handleChange}
@@ -72,36 +77,36 @@ const MobileNav = ({categories, isDark, handleChange}) => {
                                 <ListItemText primary={isDark ? 'Light Mode' : 'Dark Mode'}/>
                             </ListItem>
                         </div>
-                        <ListItem button>
+                        <ListItem classes={{button: classes.MuiButton}} button onClick={() => handleOpen()}>
                             <ListItemIcon>
-                                <FontAwesomeIcon icon={'sign-in-alt'}/>
+                                <FontAwesomeIcon size={"lg"} icon={'sign-in-alt'}/>
                             </ListItemIcon>
                             <ListItemText primary={'Se connecter'}/>
                         </ListItem>
-                        <ListItem onClick={handleCategories}>
+                        <ListItem classes={{button: classes.MuiButton}} button onClick={handleCategories}>
                             <ListItemIcon>
-                                <FontAwesomeIcon icon={'folder'}/>
+                                <FontAwesomeIcon size={"lg"} icon={'folder'}/>
                             </ListItemIcon>
                             <ListItemText primary={"Categories"}/>
                             {openCategories ? <FontAwesomeIcon icon={'chevron-up'}/> :
-                                <FontAwesomeIcon icon={'chevron-down'}/>}
+                                <FontAwesomeIcon size={"lg"} icon={'chevron-down'}/>}
                         </ListItem>
-
                         <Collapse timeout="auto" in={openCategories}>
-                                <List component={"div"} disablePadding>
-                                    {categories && categories.map((item, index) => {
-                                        return <ListItem
-                                            className={classes.nested}
-                                            key={index} button
-                                            component={RouterLink}
-                                           to={`/categorie/${item.slug}`}>
-                                            <ListItemIcon> <FontAwesomeIcon icon={'th'}/></ListItemIcon>
-                                            <ListItemText primary={item.slug.toUpperCase()}/>
-
-                                        </ListItem>
-                                    })}
-                                </List>
-                            </Collapse>
+                            <List component={"div"} disablePadding>
+                                {categories && categories.map((item, index) => {
+                                    return <ListItem
+                                        classes={{button: classes.MuiButton}}
+                                        className={classes.nested}
+                                        key={index} button
+                                        component={RouterLink}
+                                        to={`/categorie/${item.slug}`}
+                                    >
+                                        <ListItemIcon> <FontAwesomeIcon icon={'th'}/></ListItemIcon>
+                                        <ListItemText primary={item.slug.toUpperCase()}/>
+                                    </ListItem>
+                                })}
+                            </List>
+                        </Collapse>
                     </List>
                 </Drawer>
             </AppBar>

@@ -7,9 +7,8 @@ import {getCategories} from "../../store/actions/categoriesActions"
 
 const NavBar = (props) => {
 
-    const {categories, loadCategories} = props
     const [isMounted, setIsMounted] = React.useState(false)
-    const {isDark,handleChange} = props
+    const {isDark, handleChange, user, categories, loadCategories, handleOpen} = props
 
     useEffect(() => {
         if (!isMounted) {
@@ -22,14 +21,16 @@ const NavBar = (props) => {
 
     return (
         <React.Fragment>
-            {matches ? <MobileNav categories={categories} isDark={isDark} handleChange={handleChange} /> : <DesktopNav categories={categories} isDark={isDark} handleChange={handleChange}/>}
+            {matches ? <MobileNav categories={categories} handleOpen={handleOpen}isDark={isDark} handleChange={handleChange} user={user}/> :
+                <DesktopNav categories={categories} handleOpen={handleOpen}  isDark={isDark} handleChange={handleChange} user={user}/>}
         </React.Fragment>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-        categories: state.categories.categories
+        categories: state.categories.categories,
+        user: state.auth.user
     }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -38,4 +39,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(NavBar)
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar)

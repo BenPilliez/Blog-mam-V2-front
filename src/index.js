@@ -5,16 +5,15 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import 'fontsource-roboto'
 import thunk from "redux-thunk"
-import {CssBaseline} from "@material-ui/core"
 import {applyMiddleware, createStore} from "redux"
 import rootReducer from "./store/reducers/rootReducers"
 import {Provider} from "react-redux"
 import {axiosInstance, setAuthorization} from "./config/axiosConfig"
 import {localStorageTokenConfig} from "./config/localStorageToken"
 import {library} from "@fortawesome/fontawesome-svg-core"
-import {faHome, faBars, faSignInAlt, faTh, faFolder, faChevronDown, faChevronUp, faSun, faMoon} from "@fortawesome/free-solid-svg-icons"
+import {faHome, faBars, faSignInAlt, faTh, faFolder, faChevronDown, faChevronUp, faSun, faMoon, faTimes} from "@fortawesome/free-solid-svg-icons"
 
-library.add(faHome,faBars,faSignInAlt, faTh, faFolder, faChevronDown, faChevronUp, faSun, faMoon)
+library.add(faHome,faBars,faSignInAlt, faTh, faFolder, faChevronDown, faChevronUp, faSun, faMoon, faTimes)
 
 const token = localStorage.getItem('token')
 if (token) {
@@ -26,7 +25,6 @@ const store = createStore(rootReducer, applyMiddleware(thunk.withExtraArgument({
 
 ReactDOM.render(
     <Provider store={store}>
-        <CssBaseline/>
         <App/>
     </Provider>,
     document.getElementById('root')
