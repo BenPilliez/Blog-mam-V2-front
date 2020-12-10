@@ -22,7 +22,7 @@ const NavBar = (props) => {
 
     return (
         <React.Fragment>
-            {matches ? <MobileNav categories={categories} /> : <DesktopNav categories={categories} isDark={isDark} handleChange={handleChange}/>}
+            {matches ? <MobileNav categories={categories} isDark={isDark} handleChange={handleChange} /> : <DesktopNav categories={categories} isDark={isDark} handleChange={handleChange}/>}
         </React.Fragment>
     )
 }

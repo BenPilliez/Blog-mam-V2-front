@@ -28,7 +28,7 @@ const DesktopNav = ({categories, isDark, handleChange}) => {
     }
 
     return (
-        <AppBar className={classes.root} color={isDark ? 'default' : 'transparent'} elevation={0}>
+        <AppBar className={classes.root} color={isDark ? 'primary' : 'transparent'} elevation={0}>
             <Toolbar className={classes.toolBar}>
                 <Typography variant={"h6"} noWrap>
                     Blog
@@ -47,7 +47,7 @@ const DesktopNav = ({categories, isDark, handleChange}) => {
                                 value={item.slug}
                                 component={RouterLink}
                                 to={`/categorie/${item.slug}`}
-                                label={item.name}
+                                label={item.name.toUpperCase()}
                             />
                         )
                     })}

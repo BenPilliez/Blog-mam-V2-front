@@ -1,11 +1,14 @@
-import {Switch, Tooltip, Typography} from "@material-ui/core"
-import PropTypes from 'prop-types';
+import {IconButton, Tooltip, Typography} from "@material-ui/core"
+import PropTypes from 'prop-types'
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 
 const ThemeSwitch = ({isDark, handleChange}) => {
     return (
         <Typography component={"div"}>
             <Tooltip title={isDark ? 'Light mode' : 'Dark mode'}>
-                <Switch checked={isDark} onChange={(event) => handleChange(event.target.checked)}/>
+                <IconButton onClick={() => handleChange(!isDark)}>
+                    {isDark ? <FontAwesomeIcon icon={'sun'}/> : <FontAwesomeIcon icon={'moon'}/>}
+                </IconButton>
             </Tooltip>
         </Typography>
     )

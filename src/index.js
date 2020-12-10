@@ -12,9 +12,9 @@ import {Provider} from "react-redux"
 import {axiosInstance, setAuthorization} from "./config/axiosConfig"
 import {localStorageTokenConfig} from "./config/localStorageToken"
 import {library} from "@fortawesome/fontawesome-svg-core"
-import {faHome} from "@fortawesome/free-solid-svg-icons"
+import {faHome, faBars, faSignInAlt, faTh, faFolder, faChevronDown, faChevronUp, faSun, faMoon} from "@fortawesome/free-solid-svg-icons"
 
-library.add(faHome)
+library.add(faHome,faBars,faSignInAlt, faTh, faFolder, faChevronDown, faChevronUp, faSun, faMoon)
 
 const token = localStorage.getItem('token')
 if (token) {

@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
 
-    const [darkState, setDarkState] = React.useState(false)
+    const [darkState, setDarkState] = React.useState(JSON.parse(localStorage.getItem('darkState')) || false)
     const palletType = darkState ? "dark" : "light"
     const classes = useStyles()
 
@@ -37,9 +37,9 @@ function App() {
     })
     const handleThemeChange = () => {
         setDarkState(!darkState)
+        localStorage.setItem('darkState', !darkState)
     }
     return (
-
         <BrowserRouter>
             <div className="App">
                 <ThemeProvider theme={theme}>
