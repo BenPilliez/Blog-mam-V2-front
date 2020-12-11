@@ -1,9 +1,9 @@
 import React from "react"
 import NavBar from "./components/navigations/navbar"
-import {createMuiTheme, CssBaseline, makeStyles, Paper, ThemeProvider} from "@material-ui/core"
+import {createMuiTheme, CssBaseline, makeStyles, Paper, ThemeProvider, useMediaQuery} from "@material-ui/core"
 import DetailCategories from "./components/categories/detailCategories"
 import Home from "./components/home"
-import Signin from "./components/forms/signin"
+import SignIn from "./components/forms/signin"
 import {BrowserRouter, Route, Switch} from "react-router-dom"
 import {deepPurple, indigo, purple} from "@material-ui/core/colors"
 import CustomDialog from "./components/custom/customDialog"
@@ -64,7 +64,7 @@ function App() {
                             </Switch>
                         </main>
                         <CustomDialog handleClose={handleClose} title={'Se connecter'} isOpen={open} fullScreen={true}>
-                            <Signin />
+                            <SignIn />
                         </CustomDialog>
                     </Paper>
                 </ThemeProvider>
