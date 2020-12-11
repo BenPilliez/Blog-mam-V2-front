@@ -4,11 +4,12 @@ import DesktopNav from "./desktop"
 import MobileNav from "./mobile"
 import {useMediaQuery} from "@material-ui/core"
 import {getCategories} from "../../store/actions/categoriesActions"
+import {signOut} from "../../store/actions/authActions";
 
 const NavBar = (props) => {
 
     const [isMounted, setIsMounted] = React.useState(false)
-    const {isDark, handleChange, user, categories, loadCategories, handleOpen} = props
+    const {isDark, handleChange, user, categories, loadCategories, handleOpen,logout} = props
 
     useEffect(() => {
         if (!isMounted) {
@@ -21,8 +22,8 @@ const NavBar = (props) => {
 
     return (
         <React.Fragment>
-            {matches ? <MobileNav categories={categories} handleOpen={handleOpen}isDark={isDark} handleChange={handleChange} user={user}/> :
-                <DesktopNav categories={categories} handleOpen={handleOpen}  isDark={isDark} handleChange={handleChange} user={user}/>}
+            {matches ? <MobileNav handleLogout={logout} categories={categories} handleOpen={handleOpen}isDark={isDark} handleChange={handleChange} user={user}/> :
+                <DesktopNav handleLogout={logout} categories={categories} handleOpen={handleOpen}  isDark={isDark} handleChange={handleChange} user={user}/>}
         </React.Fragment>
     )
 }
@@ -35,7 +36,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadCategories: () => dispatch(getCategories())
+        loadCategories: () => dispatch(getCategories()),
+        logout: () => dispatch(signOut())
     }
 }
 

@@ -6,10 +6,16 @@ const initialState = {
 
 const authReducers = (state = initialState, actions) => {
     switch (actions.type) {
+        case 'SIGN_OUT':
+            return {
+                error: null,
+                success: null,
+                user: null
+            }
         case 'AUTH_SIGNIN_FAILED' :
             return {
                 ...state,
-                error: actions.err
+                error: actions.error
             }
         case 'AUTH_SIGNIN_SUCCESS':
             return {
@@ -20,12 +26,17 @@ const authReducers = (state = initialState, actions) => {
         case 'AUTH_SIGNUP_FAILED':
             return {
                 ...state,
-                error: actions.err
+                error: actions.error
             }
         case 'AUTH_SIGNUP_SUCCESS':
             return {
                 ...state,
                 success: true
+            }
+        case 'AUTH_RESET_STATE':
+            return {
+                success: false,
+                error: null
             }
         default :
             return state

@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const MobileNav = ({categories, isDark, handleChange, handleOpen}) => {
+const MobileNav = ({categories, isDark, handleChange, handleOpen,user, handleLogout}) => {
     const [open, setOpen] = React.useState(false)
     const [openCategories, setOpenCategories] = React.useState(false)
     const classes = useStyles()
@@ -76,12 +76,13 @@ const MobileNav = ({categories, isDark, handleChange, handleOpen}) => {
                                 </ListItemIcon>
                                 <ListItemText primary={isDark ? 'Light Mode' : 'Dark Mode'}/>
                             </ListItem>
+
                         </div>
-                        <ListItem classes={{button: classes.MuiButton}} button onClick={() => handleOpen()}>
+                        <ListItem classes={{button: classes.MuiButton}} button onClick={() => user ? handleLogout() : handleOpen()}>
                             <ListItemIcon>
-                                <FontAwesomeIcon size={"lg"} icon={'sign-in-alt'}/>
+                                {user ? <FontAwesomeIcon size={"lg"} icon={'sign-out-alt'}/> : <FontAwesomeIcon size={"lg"} icon={'sign-in-alt'}/>  }
                             </ListItemIcon>
-                            <ListItemText primary={'Se connecter'}/>
+                            <ListItemText primary={user ? 'Se déconnecter': 'Se connecter'}/>
                         </ListItem>
                         <ListItem classes={{button: classes.MuiButton}} button onClick={handleCategories}>
                             <ListItemIcon>
