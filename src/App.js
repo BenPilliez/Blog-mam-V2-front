@@ -2,7 +2,7 @@ import React from "react"
 import NavBar from "./components/navigations/navbar"
 import {createMuiTheme, CssBaseline, makeStyles, Paper, ThemeProvider} from "@material-ui/core"
 import DetailCategories from "./components/categories/detailCategories"
-import Home from "./components/home"
+import Home from "./components/layout/home"
 import AuthForm from "./components/forms/auth"
 import {BrowserRouter, Route, Switch} from "react-router-dom"
 import {deepPurple, indigo, purple} from "@material-ui/core/colors"
@@ -11,9 +11,6 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {SnackbarProvider} from "notistack"
 
 const useStyles = makeStyles((theme) => ({
-    rootContent: {
-        paddingTop: theme.spacing(15)
-    },
     paper: {
         minHeight: '100vh'
     }
