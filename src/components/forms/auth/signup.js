@@ -47,22 +47,22 @@ const validationSchema = Yup.object({
 
 const SignUp = (props) => {
 
+    const {handleChange, error, successRegister, signup} = props
     const [password, setPassword] = React.useState(true)
     const [confirmPassword, setConfirmPassword] = React.useState(true)
-    const {handleChange, error, success, signup} = props
     const {enqueueSnackbar} = useSnackbar()
 
     useEffect(() => {
         if (error) {
             enqueueSnackbar(error, {
                 variant: 'error',
-                persist: true
+                persist: false
             })
         }
-        if (success) {
+        if (successRegister) {
             handleChange()
         }
-    }, [error, success, enqueueSnackbar, handleChange])
+    }, [error, successRegister,handleChange, enqueueSnackbar])
 
     const handleSubmit = (values, setSubmitting) => {
 
@@ -80,7 +80,6 @@ const SignUp = (props) => {
     }
 
     const classes = useStyles()
-    console.log(error)
 
     return (
         <Formik
@@ -178,7 +177,7 @@ const SignUp = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        success: state.auth.success,
+        successRegister: state.auth.successRegister,
         error: state.auth.error
     }
 }

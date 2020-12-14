@@ -22,7 +22,7 @@ const NavBar = (props) => {
 
     return (
         <React.Fragment>
-            {matches ? <MobileNav handleLogout={logout} categories={categories} handleOpen={handleOpen}isDark={isDark} handleChange={handleChange} user={user}/> :
+            {matches ? <MobileNav handleLogout={logout} categories={categories} handleOpen={handleOpen} isDark={isDark} handleChange={handleChange} user={user}/> :
                 <DesktopNav handleLogout={logout} categories={categories} handleOpen={handleOpen}  isDark={isDark} handleChange={handleChange} user={user}/>}
         </React.Fragment>
     )

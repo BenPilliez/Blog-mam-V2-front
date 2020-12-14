@@ -1,15 +1,17 @@
 const initialState = {
     user: JSON.parse(localStorage.getItem('user')) || null,
-    success: false,
+    successRegister: false,
     error: null
 }
 
 const authReducers = (state = initialState, actions) => {
     switch (actions.type) {
         case 'SIGN_OUT':
+            localStorage.removeItem('user')
+            localStorage.removeItem('token')
             return {
+                ...state,
                 error: null,
-                success: null,
                 user: null
             }
         case 'AUTH_SIGNIN_FAILED' :
@@ -21,7 +23,6 @@ const authReducers = (state = initialState, actions) => {
             return {
                 ...state,
                 user: actions.data.user,
-                success: true
             }
         case 'AUTH_SIGNUP_FAILED':
             return {
@@ -31,11 +32,18 @@ const authReducers = (state = initialState, actions) => {
         case 'AUTH_SIGNUP_SUCCESS':
             return {
                 ...state,
-                success: true
+                successRegister: true
             }
+        case 'FORM_SENDING':
+            console.log('FORM_SENDING')
+            return {
+                ...state,
+                error: null
+            }
+
         case 'AUTH_RESET_STATE':
             return {
-                success: false,
+                ...state,
                 error: null
             }
         default :

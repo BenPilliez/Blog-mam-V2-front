@@ -30,6 +30,10 @@ function App() {
     const mainPrimaryColor = darkState ? purple[500] : indigo[500]
     const mainSecondaryColor = darkState ? deepPurple[500] : indigo[900]
 
+    const handleClose = React.useCallback(() => {
+        setOpen(open => !open)
+    }, [setOpen])
+
     const theme = createMuiTheme({
         palette: {
             type: palletType,
@@ -44,10 +48,6 @@ function App() {
     const handleThemeChange = () => {
         setDarkState(!darkState)
         localStorage.setItem('darkState', !darkState)
-    }
-
-    const handleClose = () => {
-        setOpen(!open)
     }
 
     const onClickDismiss = key => () => {

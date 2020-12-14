@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"
+import React, { useEffect} from "react"
 import {connect} from "react-redux"
 import {Field, Form, Formik} from 'formik'
 import {Box, Button, InputAdornment, makeStyles} from '@material-ui/core'
@@ -35,10 +35,11 @@ const initialValue = {
 
 const SignIn = (props) => {
 
-    const classes = useStyles()
-    const {signIn, success, error, handleClose} = props
-    const [password, setPassword] = React.useState(true)
+
+    const {logIn,error,user, handleClose} = props
     const {enqueueSnackbar} = useSnackbar()
+    const classes = useStyles()
+    const [password, setPassword] = React.useState(true)
 
     useEffect(() => {
         if (error) {
@@ -47,14 +48,15 @@ const SignIn = (props) => {
                 persist: true,
             })
         }
-
-        if (success) {
+        if(user){
             handleClose()
         }
-    }, [error,success, enqueueSnackbar])
+
+    }, [error,user,handleClose,enqueueSnackbar])
+
 
     const handleSubmit = (values,setSubmitting) => {
-        signIn(values)
+        logIn(values)
         setSubmitting(false)
     }
 
@@ -128,13 +130,14 @@ const SignIn = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        success: state.auth.success,
+        user: state.auth.user,
         error: state.auth.error
     }
 }
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        signIn: (credentials) => dispatch(Signin(credentials))
+        logIn: (credentials) => dispatch(Signin(credentials))
     }
 }
 

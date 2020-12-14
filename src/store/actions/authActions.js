@@ -7,6 +7,12 @@ export const ResetState = () => {
     }
 }
 
+export const sendForm = () => {
+    return (dispatch) => {
+        dispatch({type: 'FORM_SENDING'})
+    }
+}
+
 export const signOut = () => {
     return (dispatch) => {
         dispatch({type: 'SIGN_OUT'})
@@ -15,10 +21,10 @@ export const signOut = () => {
 
 export const Signup = (form) => {
     return (dispatch, getState, {axiosInstance}) => {
+        dispatch(sendForm())
       axiosInstance({url: `${process.env.REACT_APP_BASE_URL}/signup`, data: form, method: 'POST'})
             .then(res => {
                 dispatch({type: 'AUTH_SIGNUP_SUCCESS', data: res.data})
-                dispatch(ResetState())
             })
             .catch(err => {
                 let error;
@@ -32,23 +38,23 @@ export const Signup = (form) => {
                 }
                 console.log(error)
                 dispatch({type: 'AUTH_SIGNUP_FAILED', error: typeof error === "object" ? error.join('\n') : error})
-                dispatch(ResetState())
             })
     }
 }
 
 export const Signin = (credentials) => {
     return (dispatch, getState, {axiosInstance}) => {
+        dispatch(sendForm())
+
         axiosInstance({url: `${process.env.REACT_APP_BASE_URL}/signin`, data: credentials, method: 'POST'})
             .then(res => {
                 localStorage.setItem('user', JSON.stringify(res.data.user))
                 localStorage.setItem('token', res.data.token)
                 setAuthorization(axiosInstance, res.data.token)
                 dispatch({type: 'AUTH_SIGNIN_SUCCESS', data: res.data})
-                dispatch(ResetState())
             }).catch(err => {
             dispatch({type: 'AUTH_SIGNIN_FAILED', error: err.response.data.error})
-            dispatch(ResetState())
+
         })
     }
 }

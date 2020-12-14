@@ -40,7 +40,7 @@ const DesktopNav = ({categories, isDark, handleChange, user, handleLogout, handl
     const isMenuOpen = Boolean(anchorEl)
     const classes = useStyles()
 
-    const handleChangeValue = (event, newValue) => {
+    const handleChangeTabsValue = (event, newValue) => {
         setValue(newValue)
     }
 
@@ -56,13 +56,12 @@ const DesktopNav = ({categories, isDark, handleChange, user, handleLogout, handl
         <Menu
             anchorEl={anchorEl}
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            keepMounted
             transformOrigin={{ vertical: 'top', horizontal: 'right' }}
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
             <MenuItem onClick={handleMenuClose}>Mon compte</MenuItem>
-            <MenuItem onClick={handleLogout}>Se déconnecter</MenuItem>
+            <MenuItem onClick={ () => {handleLogout(); handleMenuClose()}}>Se déconnecter</MenuItem>
         </Menu>
     )
 
@@ -75,7 +74,7 @@ const DesktopNav = ({categories, isDark, handleChange, user, handleLogout, handl
                 </Typography>
                 <Tabs
                     value={value}
-                    onChange={handleChangeValue}
+                    onChange={handleChangeTabsValue}
                     variant={"scrollable"}
                     scrollButtons={"auto"}
                 >
