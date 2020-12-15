@@ -3,6 +3,7 @@ import NavBar from "./components/navigations/navbar"
 import {createMuiTheme, CssBaseline, makeStyles, Paper, ThemeProvider} from "@material-ui/core"
 import DetailCategories from "./components/categories/detailCategories"
 import Home from "./components/layout/home"
+import DetailPost from "./components/layout/detailPost"
 import AuthForm from "./components/forms/auth"
 import {BrowserRouter, Route, Switch} from "react-router-dom"
 import {deepPurple, indigo, purple} from "@material-ui/core/colors"
@@ -11,6 +12,9 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {SnackbarProvider} from "notistack"
 
 const useStyles = makeStyles((theme) => ({
+    rootContent: {
+        paddingTop: 60
+    },
     paper: {
         minHeight: '100vh'
     }
@@ -64,18 +68,20 @@ function App() {
                     >
                         <CssBaseline/>
                         <Paper className={classes.paper}>
-                            <header>
                                 <NavBar isDark={darkState} handleChange={handleThemeChange}
                                         handleOpen={() => setOpen(true)}/>
-                            </header>
                             <main className={classes.rootContent}>
                                 <Switch>
                                     <Route exact path={"/"} component={Home}/>
-                                    <Route exact path={"/categorie/:slug"} component={DetailCategories}/>
+                                    <Route path={"/categorie/:slug"} component={DetailCategories}/>
+                                    <Route path={'/post/:slug'} component={DetailPost} />
                                 </Switch>
                             </main>
-                            <CustomDialog handleClose={handleClose} title={'Connexion / Inscription'} isOpen={open}
-                                          fullScreen={true}>
+                            <CustomDialog
+                                handleClose={handleClose}
+                                title={'Connexion / Inscription'}
+                                isOpen={open}
+                                fullScreen={true}>
                                 <AuthForm handleClose={handleClose}/>
                             </CustomDialog>
                         </Paper>

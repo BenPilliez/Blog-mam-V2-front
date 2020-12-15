@@ -10,10 +10,9 @@ import rootReducer from "./store/reducers/rootReducers"
 import {Provider} from "react-redux"
 import {axiosInstance, setAuthorization} from "./config/axiosConfig"
 import {localStorageTokenConfig} from "./config/localStorageToken"
-import {library} from "@fortawesome/fontawesome-svg-core"
-import {faHome, faBars, faSignInAlt, faTh, faFolder, faChevronDown, faChevronUp, faSun, faMoon, faTimes,faEnvelope,faKey,faLock,faUser,faEye,faEyeSlash,faSignOutAlt,faCalendarAlt} from "@fortawesome/free-solid-svg-icons"
-
-library.add(faHome,faBars,faSignInAlt, faTh, faFolder, faChevronDown, faChevronUp, faSun, faMoon, faTimes,faEnvelope,faKey,faLock,faUser,faEye,faEyeSlash,faSignOutAlt,faCalendarAlt)
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+import "./config/fontAwesome"
 
 const token = localStorage.getItem('token')
 if (token) {

@@ -67,7 +67,7 @@ const DesktopNav = ({categories, isDark, handleChange, user, handleLogout, handl
 
 
     return (
-        <AppBar className={classes.root} color={isDark ? 'primary' : 'transparent'} elevation={0}>
+        <AppBar className={classes.root} color={'primary'} elevation={0}>
             <Toolbar className={classes.toolBar}>
                 <Typography variant={"h6"} noWrap>
                     Blog

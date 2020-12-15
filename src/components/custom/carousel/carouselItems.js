@@ -8,7 +8,8 @@ const useStyle = makeStyles((theme) => ({
         position: 'relative',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        backgroundSize: 'cover'
+        backgroundSize: 'cover',
+        margin: theme.spacing(1)
     },
     cardContent: {
         position: 'absolute',
@@ -20,13 +21,15 @@ const useStyle = makeStyles((theme) => ({
     },
     span: {
         padding: theme.spacing(1.5),
-        backgroundColor: theme.palette.primary.main
+        backgroundColor: theme.palette.primary.main,
+        color: 'white'
     },
 
     title: {
         margin: '15px 0',
         fontSize: '25px',
-        lineHeight: '32px'
+        lineHeight: '32px',
+        color: 'white'
     },
     list: {
         display: 'flex',
@@ -35,7 +38,8 @@ const useStyle = makeStyles((theme) => ({
         fontSize: '14px'
     },
     listItem: {
-        width: 'auto'
+        width: 'auto',
+        color:'white'
     }
 }))
 
@@ -56,13 +60,13 @@ const CarouselItem = ({item}) => {
                     <List className={classes.list}>
                         <ListItem className={classes.listItem}>
                             <ListItemIcon>
-                                <FontAwesomeIcon icon={'calendar-alt'} />
+                                <FontAwesomeIcon icon={'calendar-alt'} color={"white"}/>
                             </ListItemIcon>
                             <ListItemText primary={item.createdAt} />
                         </ListItem>
                         <ListItem className={classes.listItem}>
                             <ListItemIcon>
-                                <FontAwesomeIcon icon={'user'} />
+                                <FontAwesomeIcon icon={'user'} color={"white"}/>
                             </ListItemIcon>
                             <ListItemText primary={item.user.username} />
                         </ListItem>

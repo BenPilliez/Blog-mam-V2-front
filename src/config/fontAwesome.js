@@ -1,0 +1,46 @@
+import {library} from "@fortawesome/fontawesome-svg-core"
+import {faHome,
+    faBars,
+    faSignInAlt,
+    faTh,
+    faFolder,
+    faChevronDown,
+    faChevronUp,
+    faSun,
+    faMoon,
+    faTimes,
+    faEnvelope,
+    faKey,
+    faLock,
+    faUser,
+    faEye,
+    faEyeSlash,
+    faSignOutAlt,
+    faCalendarAlt,
+    faArrowRight,
+    faArrowLeft} from "@fortawesome/free-solid-svg-icons"
+
+library.add(
+    faHome,
+    faBars,
+    faSignInAlt,
+    faTh,
+    faFolder,
+    faChevronDown,
+    faChevronUp,
+    faSun,
+    faMoon,
+    faTimes,
+    faEnvelope,
+    faKey,
+    faLock,
+    faUser,
+    faEye,
+    faEyeSlash,
+    faSignOutAlt,
+    faCalendarAlt,
+    faArrowRight,
+    faArrowLeft
+    )
+
+
