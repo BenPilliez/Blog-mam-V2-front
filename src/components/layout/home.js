@@ -1,22 +1,30 @@
 import React, {useEffect} from "react"
 import {connect} from "react-redux"
-import {getPosts} from "../../store/actions/postsActions"
+import {carouselPost, getPosts} from "../../store/actions/postsActions"
 import CustomCarousel from "../custom/carousel/carousel"
 import CardList from "../custom/card/cardList"
 
-const Home = ({carouselItems, posts, getPosts, pagination}) => {
+const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost}) => {
 
     const params = {
         perPage: 5,
         page: 0,
         order: ['createdAt', 'asc']
     }
+
+    const carouselParams = {
+        perPage: 4,
+        page: 0,
+        order: ['createdAt', 'asc']
+    }
+
     const [firstMount, setFirstMount] = React.useState(true)
     const [page, setPage] = React.useState(params.page)
 
     useEffect(() => {
         if (firstMount) {
             getPosts(params)
+            getCarouselPost(carouselParams)
             setFirstMount(false)
         }
     }, [setFirstMount, getPosts, firstMount])
@@ -25,7 +33,6 @@ const Home = ({carouselItems, posts, getPosts, pagination}) => {
         setPage(newPage);
         params['page'] = newPage - 1
         getPosts(params)
-        console.log("allo")
     }
 
     return (
@@ -48,7 +55,7 @@ const Home = ({carouselItems, posts, getPosts, pagination}) => {
 }
 
 const mapStateToProps = (state) => {
-    const carouselItems = state.posts.posts.slice(0, 4)
+    const carouselItems = state.posts.carouselPosts
     return {
         carouselItems: carouselItems,
         posts: state.posts.posts,
@@ -58,7 +65,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getPosts: (params) => dispatch(getPosts(params))
+        getPosts: (params) => dispatch(getPosts(params)),
+        getCarouselPost: (params) => dispatch(carouselPost(params))
     }
 }
 

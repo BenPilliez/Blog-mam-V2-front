@@ -1,3 +1,16 @@
+export const carouselPost = (params) => {
+    return (dispatch, getState, {axiosInstance}) => {
+        axiosInstance({url: `${process.env.REACT_APP_BASE_URL}/posts`, params: params, method: 'GET'})
+            .then(res => {
+                dispatch({type: 'GET_CAROUSEL_POSTS_SUCCESS', data: res.data})
+            })
+            .catch(err => {
+                console.error(err)
+                dispatch({type: 'GET_CAROUSEL_POSTS_FAILED', error: err.response.data.error})
+            })
+    }
+}
+
 export const getPosts = (params) => {
     return (dispatch, getState, {axiosInstance}) => {
         axiosInstance({url: `${process.env.REACT_APP_BASE_URL}/posts`, params: params, method: 'GET'})
