@@ -1,47 +1,51 @@
 import React, {useEffect} from "react"
 import {connect} from "react-redux"
 import {detailCategory} from "../../store/actions/categoriesActions";
-import {Container, Grid} from "@material-ui/core";
-import CustomCard from "../custom/card/customCard";
-import {Pagination} from "@material-ui/lab";
+import CardList from "../custom/card/cardList";
 
 const DetailCategories = (props) => {
 
     const {categoryDetail, getCategoryDetail} = props
+    const [page, setPage] = React.useState(1)
     const params = props.match.params.slug
 
-    console.log(categoryDetail)
+    const pagination = {
+        perPage: 10,
+        page: 0,
+        totalPages: categoryDetail ? Math.ceil(categoryDetail.posts.length / 10) : 1,
+        order: ['createdAt', 'asc']
+    }
+
+
+    function paginate(array, page_size, page_number) {
+        // human-readable page numbers usually start with 1, so we reduce 1 in the first argument
+        return array.slice((page_number - 1) * page_size, page_number * page_size);
+    }
 
     useEffect(() => {
-            getCategoryDetail(params)
+        getCategoryDetail(params)
     }, [getCategoryDetail, params])
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage)
+        return paginate(categoryDetail.posts, pagination.perPage, newPage)
+    }
 
     return (
         <React.Fragment>
-            <Container className={classes.root}>
-                <Grid container justify={"center"}>
-                    {posts && posts.map((item, index) => {
-                        return <CustomCard
-                            item={item}
-                            key={index}/>
-                    })}
-                    <Grid item container justify={"center"} xs={12}>
-                        <Pagination
-                            className={classes.spacing}
-                            component="div"
-                            count={pagination.totalPages}
-                            page={page}
-                            onChange={handleChangePage}
-                        />
-                    </Grid>
-                </Grid>
-            </Container>
+            {categoryDetail ?
+                <CardList
+                    pagination={pagination}
+                    handleChange={handleChangePage}
+                    page={page}
+
+                    posts={paginate(categoryDetail.posts, pagination.perPage, page)}/> : null}
         </React.Fragment>
 
     )
 }
 
-const mapStateToProps = (state,ownProps) => {
+const mapStateToProps = (state, ownProps) => {
     const slug = ownProps.match.params.slug
 
     const detail = state.categories.detailCategory.find((item) => {
@@ -60,4 +64,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(DetailCategories)
+export default connect(mapStateToProps, mapDispatchToProps)(DetailCategories)
