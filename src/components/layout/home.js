@@ -100,7 +100,7 @@ const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost}) => 
                             />
                         </Grid>
                     })}
-                    <Grid item container justify={"center"} xs={12}>
+                    {posts && posts.length > 0 ?  <Grid item container justify={"center"} xs={12}>
                         <Pagination
                             className={classes.spacing}
                             component="div"
@@ -108,9 +108,9 @@ const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost}) => 
                             page={page}
                             onChange={handleChangePage}
                         />
-                    </Grid>
+                    </Grid> : <div>No content</div>
+                    }
                 </Grid>
-                }
             </Container>
         </React.Fragment>
     )
