@@ -2,21 +2,28 @@ import React, {useEffect} from "react"
 import {connect} from "react-redux"
 import {carouselPost, getPosts} from "../../store/actions/postsActions"
 import CustomCarousel from "../custom/carousel/carousel"
-import CardList from "../custom/card/cardList"
+import {Container, Grid, Typography} from "@material-ui/core";
+import CustomCard from "../custom/card/customCard";
+import {Pagination} from "@material-ui/lab";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Link as RouterLink} from "react-router-dom";
+import {cardStyle} from "../../helpers/cardComponentStyle";
+
+const carouselParams = {
+    perPage: 4,
+    page: 0,
+    order: ['createdAt', 'asc']
+}
+
+const params = {
+    perPage: 10,
+    page: 0,
+    order: ['createdAt', 'asc']
+}
 
 const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost}) => {
 
-    const params = {
-        perPage: 5,
-        page: 0,
-        order: ['createdAt', 'asc']
-    }
-
-    const carouselParams = {
-        perPage: 4,
-        page: 0,
-        order: ['createdAt', 'asc']
-    }
+    const classes = cardStyle()
 
     const [firstMount, setFirstMount] = React.useState(true)
     const [page, setPage] = React.useState(params.page)
@@ -27,7 +34,7 @@ const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost}) => 
             getCarouselPost(carouselParams)
             setFirstMount(false)
         }
-    }, [setFirstMount, getPosts, firstMount])
+    }, [setFirstMount, getPosts, getCarouselPost, firstMount])
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -49,7 +56,62 @@ const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost}) => 
                     }}
                 items={carouselItems}
             />
-            <CardList pagination={pagination} handleChange={handleChangePage} page={page} posts={posts}/>
+            <Container className={classes.root}>
+                <Grid container justify={"center"}>
+                    {posts && posts.map((item, key) => {
+                        return <Grid key={key} item xs={12} lg={4} md={6} sm={6}>
+                            <CustomCard
+                                props={{className: classes.cardRoot}}
+                                media={
+                                    {
+                                        className: classes.media,
+                                        image: `${process.env.REACT_APP_BASE_PUBLIC_URL}/${item.photos[0]}`,
+                                        content: <Typography component={"span"}
+                                                             className={classes.span}>
+                                            {item.category.name}
+                                        </Typography>
+                                    }
+                                }
+                                content={{
+                                    content: <>
+                                        <Typography variant={"subtitle1"} color={"textSecondary"}>
+                                            {item.createdAt}
+                                        </Typography>
+                                        <Typography variant={"body1"} color={'textPrimary'}>
+                                            {item.title}
+                                        </Typography>
+                                    </>
+                                }}
+                                actions={{
+                                    className: classes.actions,
+                                    actions: [
+                                        {
+                                            label: 'En voir plus',
+                                            props: {
+                                                component: RouterLink,
+                                                to: `/post/${item.slug}`,
+                                                size: 'small',
+                                                color: 'primary',
+                                                startIcon: <FontAwesomeIcon icon={'eye'}/>
+                                            }
+                                        }
+                                    ]
+                                }}
+                            />
+                        </Grid>
+                    })}
+                    <Grid item container justify={"center"} xs={12}>
+                        <Pagination
+                            className={classes.spacing}
+                            component="div"
+                            count={pagination.totalPages}
+                            page={page}
+                            onChange={handleChangePage}
+                        />
+                    </Grid>
+                </Grid>
+                }
+            </Container>
         </React.Fragment>
     )
 }
