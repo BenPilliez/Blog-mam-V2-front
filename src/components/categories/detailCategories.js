@@ -1,7 +1,8 @@
 import React, {useEffect} from "react"
 import {connect} from "react-redux"
-import {detailCategory} from "../../store/actions/categoriesActions";
-import CardList from "../custom/card/cardList";
+import {detailCategory} from "../../store/actions/categoriesActions"
+import CardList from "../custom/card/cardList"
+import {paginate} from "../../helpers/paginate"
 
 const DetailCategories = (props) => {
 
@@ -16,11 +17,6 @@ const DetailCategories = (props) => {
         order: ['createdAt', 'asc']
     }
 
-
-    function paginate(array, page_size, page_number) {
-        // human-readable page numbers usually start with 1, so we reduce 1 in the first argument
-        return array.slice((page_number - 1) * page_size, page_number * page_size);
-    }
 
     useEffect(() => {
         getCategoryDetail(params)
@@ -38,7 +34,6 @@ const DetailCategories = (props) => {
                     pagination={pagination}
                     handleChange={handleChangePage}
                     page={page}
-
                     posts={paginate(categoryDetail.posts, pagination.perPage, page)}/> : null}
         </React.Fragment>
 
