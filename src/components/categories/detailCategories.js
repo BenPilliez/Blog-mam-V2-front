@@ -29,8 +29,6 @@ const DetailCategories = (props) => {
         setOnLoad(false);
     }, [getCategoryDetail, params, setOnLoad]);
 
-    console.log(categoryDetail);
-
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
         return paginate(categoryDetail.posts, pagination.perPage, newPage);
