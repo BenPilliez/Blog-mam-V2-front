@@ -1,7 +1,7 @@
-import React, {useEffect} from "react"
-import {connect} from "react-redux"
-import {carouselPost, getPosts} from "../../store/actions/postsActions"
-import CustomCarousel from "../custom/carousel/carousel"
+import React, {useEffect} from "react";
+import {connect} from "react-redux";
+import {carouselPost, getPosts} from "../../store/actions/postsActions";
+import CustomCarousel from "../custom/carousel/carousel";
 import {Container, Grid, Typography} from "@material-ui/core";
 import CustomCard from "../custom/card/customCard";
 import {Pagination} from "@material-ui/lab";
@@ -12,35 +12,35 @@ import {cardStyle} from "../../helpers/cardComponentStyle";
 const carouselParams = {
     perPage: 4,
     page: 0,
-    order: ['createdAt', 'asc']
-}
+    order: ["createdAt", "asc"]
+};
 
 const params = {
     perPage: 10,
     page: 0,
-    order: ['createdAt', 'asc']
-}
+    order: ["createdAt", "asc"]
+};
 
 const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost}) => {
 
-    const classes = cardStyle()
+    const classes = cardStyle();
 
-    const [firstMount, setFirstMount] = React.useState(true)
-    const [page, setPage] = React.useState(params.page)
+    const [firstMount, setFirstMount] = React.useState(true);
+    const [page, setPage] = React.useState(params.page);
 
     useEffect(() => {
         if (firstMount) {
-            getPosts(params)
-            getCarouselPost(carouselParams)
-            setFirstMount(false)
+            getPosts(params);
+            getCarouselPost(carouselParams);
+            setFirstMount(false);
         }
-    }, [setFirstMount, getPosts, getCarouselPost, firstMount])
+    }, [setFirstMount, getPosts, getCarouselPost, firstMount]);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
-        params['page'] = newPage - 1
-        getPosts(params)
-    }
+        params["page"] = newPage - 1;
+        getPosts(params);
+    };
 
     return (
         <React.Fragment>
@@ -49,6 +49,7 @@ const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost}) => 
                     {
                         dots: false,
                         infinite: true,
+                        touchMove: false,
                         autoplay: true,
                         speed: 500,
                         slidesToShow: 3,
@@ -77,7 +78,7 @@ const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost}) => 
                                         <Typography variant={"subtitle1"} color={"textSecondary"}>
                                             {item.createdAt}
                                         </Typography>
-                                        <Typography variant={"body1"} color={'textPrimary'}>
+                                        <Typography variant={"body1"} color={"textPrimary"}>
                                             {item.title}
                                         </Typography>
                                     </>
@@ -86,21 +87,21 @@ const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost}) => 
                                     className: classes.actions,
                                     actions: [
                                         {
-                                            label: 'En voir plus',
+                                            label: "En voir plus",
                                             props: {
                                                 component: RouterLink,
                                                 to: `/post/${item.slug}`,
-                                                size: 'small',
-                                                color: 'primary',
-                                                startIcon: <FontAwesomeIcon icon={'eye'}/>
+                                                size: "small",
+                                                color: "primary",
+                                                startIcon: <FontAwesomeIcon icon={"eye"}/>
                                             }
                                         }
                                     ]
                                 }}
                             />
-                        </Grid>
+                        </Grid>;
                     })}
-                    {posts && posts.length > 0 ?  <Grid item container justify={"center"} xs={12}>
+                    {posts && posts.length > 0 ? <Grid item container justify={"center"} xs={12}>
                         <Pagination
                             className={classes.spacing}
                             component="div"
@@ -113,23 +114,23 @@ const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost}) => 
                 </Grid>
             </Container>
         </React.Fragment>
-    )
-}
+    );
+};
 
 const mapStateToProps = (state) => {
-    const carouselItems = state.posts.carouselPosts
+    const carouselItems = state.posts.carouselPosts;
     return {
         carouselItems: carouselItems,
         posts: state.posts.posts,
         pagination: state.posts.pagination
-    }
-}
+    };
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getPosts: (params) => dispatch(getPosts(params)),
         getCarouselPost: (params) => dispatch(carouselPost(params))
-    }
-}
+    };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

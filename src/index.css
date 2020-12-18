@@ -59,3 +59,5 @@ code {
   right: 0;
   color: white
 }
+
+.slick-list, .slick-track { touch-action:pan-y; }

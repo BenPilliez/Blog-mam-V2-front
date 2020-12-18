@@ -3,10 +3,10 @@ import {CardHeader} from "@material-ui/core";
 
 
 const HeaderCard = (props) => {
-
     return(
         <React.Fragment>
-            <CardHeader {...props} />
+            {!props.header && null}
+            {props.header &&  <CardHeader {...props} />}
         </React.Fragment>
     )
 }

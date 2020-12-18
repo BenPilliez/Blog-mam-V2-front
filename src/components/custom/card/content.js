@@ -4,10 +4,14 @@ import {CardContent} from "@material-ui/core";
 
 const ContentCard = ({content}) => {
     return (
-        <CardContent {...content}>
-            {content && content.content}
-        </CardContent>
-    )
-}
+        <React.Fragment>
+            {!content && null}
+            {content && <CardContent {...content}>
+                {content.content}
+            </CardContent>}
+        </React.Fragment>
 
-export default ContentCard
+    );
+};
+
+export default ContentCard;

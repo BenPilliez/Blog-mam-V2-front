@@ -20,7 +20,7 @@ export const detailCategory = (slug) => {
         if (detail) {
             return detail
         } else {
-            axiosInstance({url: `${process.env.REACT_APP_BASE_URL}/category/${slug}`, method: 'GET'})
+            axiosInstance({url: `${process.env.REACT_APP_BASE_URL}/category/${slug}`, params:{include: true}, method: 'GET'})
                 .then(res => {
                     dispatch({type: 'CATEGORIES_LOAD_DETAIL_SUCCESS', category: res.data})
                 })

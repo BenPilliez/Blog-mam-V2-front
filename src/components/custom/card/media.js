@@ -3,10 +3,13 @@ import {CardMedia} from "@material-ui/core";
 
 const MediaCard = ({media}) => {
     return (
-        <CardMedia {...media}>
-            {media && media.content}
-        </CardMedia>
-    )
-}
+        <React.Fragment>
+            {!media && null}
+            {media && <CardMedia {...media}>
+                {media && media.content}
+            </CardMedia>}
+        </React.Fragment>
+    );
+};
 
-export default MediaCard
+export default MediaCard;
