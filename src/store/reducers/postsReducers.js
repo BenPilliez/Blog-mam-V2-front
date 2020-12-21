@@ -9,22 +9,22 @@ const initialState = {
         limit: 10,
         currentPage: 0
     },
-}
+};
 
 const postsReducers = (state = initialState, actions) => {
 
     switch (actions.type) {
-        case 'GET_CAROUSEL_POSTS_SUCCESS':
+        case "GET_CAROUSEL_POSTS_SUCCESS":
             return {
                 ...state,
                 carouselPosts: actions.data.items
-            }
-        case 'GET_CAROUSEL_POSTS_FAILED':
+            };
+        case "GET_CAROUSEL_POSTS_FAILED":
             return {
                 ...state,
                 error: actions.error
-            }
-        case 'GET_POSTS_SUCCESS' :
+            };
+        case "GET_POSTS_SUCCESS" :
             return {
                 ...state,
                 pagination: {
@@ -34,26 +34,26 @@ const postsReducers = (state = initialState, actions) => {
                     currentPage: actions.data.currentPage
                 },
                 posts: actions.data.items
-            }
-        case 'GET_POSTS_FAILED' :
+            };
+        case "GET_POSTS_FAILED" :
             return {
                 ...state,
                 error: actions.error
-            }
-        case 'GET_POST_DETAIL_SUCCESS':
+            };
+        case "GET_POST_DETAIL_SUCCESS":
 
             return {
                 ...state,
                 postDetail: [...state.postDetail, actions.data]
-            }
-        case 'GET_POST_DETAIL_FAILED':
+            };
+        case "GET_POST_DETAIL_FAILED":
             return {
                 ...state,
                 error: actions.data
-            }
+            };
         default:
-            return state
+            return state;
     }
-}
+};
 
-export default postsReducers
+export default postsReducers;

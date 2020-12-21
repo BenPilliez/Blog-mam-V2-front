@@ -18,7 +18,7 @@ const DetailCategories = (props) => {
     const classes = cardStyle();
 
     const pagination = {
-        perPage: 10,
+        perPage: 9,
         page: 0,
         totalPages: categoryDetail && categoryDetail.posts ? Math.ceil(categoryDetail.posts.length / 10) : 1,
         order: ["createdAt", "asc"]

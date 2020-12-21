@@ -1,85 +1,85 @@
-import React, {useEffect} from "react"
-import * as Yup from "yup"
-import {connect} from "react-redux"
-import {Field, Form, Formik} from "formik"
-import {TextField} from 'formik-material-ui'
-import {Box, Button, InputAdornment, makeStyles} from "@material-ui/core"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {Signup} from "../../../store/actions/authActions"
-import {useSnackbar} from "notistack"
+import React, {useEffect} from "react";
+import * as Yup from "yup";
+import {connect} from "react-redux";
+import {Field, Form, Formik} from "formik";
+import {TextField} from "formik-material-ui";
+import {Box, Button, InputAdornment, makeStyles} from "@material-ui/core";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Signup} from "../../../store/actions/authActions";
+import {useSnackbar} from "notistack";
 
 const useStyles = makeStyles((theme) => ({
     form: {
-        width: '100%', // Fix IE 11 issue.
+        width: "100%", // Fix IE 11 issue.
         marginTop: theme.spacing(1),
     },
     submit: {
         margin: theme.spacing(3, 0, 2)
     }
-}))
+}));
 
 const initialValue = {
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-}
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
+};
 
 const validationSchema = Yup.object({
     username: Yup
-        .string('Username')
-        .required('Le champ est obligatoire'),
+        .string("Username")
+        .required("Le champ est obligatoire"),
     email: Yup
-        .string('Email')
-        .email('Il faut un email valide du type xxx@xxx.com')
-        .required('Le champ est obligatoire'),
+        .string("Email")
+        .email("Il faut un email valide du type xxx@xxx.com")
+        .required("Le champ est obligatoire"),
     password: Yup
-        .string('Mot de passe')
-        .min(8, 'Le mot de passe doit contenir au moins 8 caractères')
+        .string("Mot de passe")
+        .min(8, "Le mot de passe doit contenir au moins 8 caractères")
         // eslint-disable-next-line
-        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[.!@#\?<>\{\}\[\]\(\)\$%\^&\*])/, 'Le mot de passe doit contenir au moins, un chiffre, une majscule et un caractère spécial')
-        .required('Le champ est obligatoire'),
+        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[.!@#\?<>\{\}\[\]\(\)\$%\^&\*])/, "Le mot de passe doit contenir au moins, un chiffre, une majscule et un caractère spécial")
+        .required("Le champ est obligatoire"),
     confirmPassword: Yup
         .string("Confirmation")
-        .required('Le champ est obligatoire')
-        .oneOf([Yup.ref('password'), null], 'Les mots de passe ne correspondent pas ')
-})
+        .required("Le champ est obligatoire")
+        .oneOf([Yup.ref("password"), null], "Les mots de passe ne correspondent pas ")
+});
 
 const SignUp = (props) => {
 
-    const {handleChange, error, successRegister, signup} = props
-    const [password, setPassword] = React.useState(true)
-    const [confirmPassword, setConfirmPassword] = React.useState(true)
-    const {enqueueSnackbar} = useSnackbar()
+    const {handleChange, error, successRegister, signup} = props;
+    const [password, setPassword] = React.useState(true);
+    const [confirmPassword, setConfirmPassword] = React.useState(true);
+    const {enqueueSnackbar} = useSnackbar();
 
     useEffect(() => {
         if (error) {
             enqueueSnackbar(error, {
-                variant: 'error',
+                variant: "error",
                 persist: false
-            })
+            });
         }
         if (successRegister) {
-            handleChange()
+            handleChange();
         }
-    }, [error, successRegister,handleChange, enqueueSnackbar])
+    }, [error, successRegister, handleChange, enqueueSnackbar]);
 
     const handleSubmit = (values, setSubmitting) => {
 
-        setSubmitting(false)
-        signup(values)
+        setSubmitting(false);
+        signup(values);
 
-    }
+    };
 
     const handlePassword = () => {
-        setPassword(!password)
-    }
+        setPassword(!password);
+    };
 
     const handleConfirmPassword = () => {
-        setConfirmPassword(!confirmPassword)
-    }
+        setConfirmPassword(!confirmPassword);
+    };
 
-    const classes = useStyles()
+    const classes = useStyles();
 
     return (
         <Formik
@@ -128,12 +128,12 @@ const SignUp = (props) => {
                             fullWidth
                             variant={"outlined"}
                             label={"Mot de passe"}
-                            type={password ? 'password' : 'text'}
+                            type={password ? "password" : "text"}
                             name={"password"}
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment onClick={handlePassword} position="end">
-                                        {password ? <FontAwesomeIcon icon={'eye'}/> :
+                                        {password ? <FontAwesomeIcon icon={"eye"}/> :
                                             <FontAwesomeIcon icon={"eye-slash"}/>}
                                     </InputAdornment>
                                 )
@@ -146,12 +146,12 @@ const SignUp = (props) => {
                             fullWidth
                             variant={"outlined"}
                             label={"Confirmation"}
-                            type={confirmPassword ? 'password' : 'text'}
+                            type={confirmPassword ? "password" : "text"}
                             name={"confirmPassword"}
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment onClick={handleConfirmPassword} position="end">
-                                        {confirmPassword ? <FontAwesomeIcon icon={'eye'}/> :
+                                        {confirmPassword ? <FontAwesomeIcon icon={"eye"}/> :
                                             <FontAwesomeIcon icon={"eye-slash"}/>}
                                     </InputAdornment>
                                 )
@@ -172,20 +172,20 @@ const SignUp = (props) => {
                 </Form>
             )}
         </Formik>
-    )
-}
+    );
+};
 
 const mapStateToProps = (state) => {
     return {
         successRegister: state.auth.successRegister,
         error: state.auth.error
-    }
-}
+    };
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
         signup: (form) => dispatch(Signup(form))
-    }
-}
+    };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
