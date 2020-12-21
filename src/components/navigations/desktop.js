@@ -38,23 +38,25 @@ const DesktopNav = ({categories, isDark, handleChange, user, handleLogout, handl
     const [value, setValue] = React.useState();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [files] = React.useState(user ? user.avatar : "");
-    const [cat, setCat] = React.useState()
+    const [cat, setCat] = React.useState();
     const isMenuOpen = Boolean(anchorEl);
     const classes = useStyles();
 
     useEffect(() => {
-        if (categories){
-            setCat([...categories, {name:'accueil'}].sort((a, b) => {
-                if(a > b){
-                    return 1
+        if (categories) {
+            setCat([...categories, {name: "accueil"}].sort((a, b) => {
+                if (a > b) {
+                    return 1;
                 }
-                return -1
-            }))
-            if (window.location) {
-                    setValue(window.location.pathname.slice(11))
+                return -1;
+            }));
+            if (window.location.pathname === "/") {
+                setValue("home");
+            } else {
+                setValue(window.location.pathname.slice(11));
             }
         }
-    },[categories])
+    }, [categories]);
 
     const handleChangeTabsValue = (event, newValue) => {
         setValue(newValue);
@@ -101,12 +103,12 @@ const DesktopNav = ({categories, isDark, handleChange, user, handleLogout, handl
                         return (
                             <Tab
                                 key={index}
-                                value={item.slug ? item.slug : 'home'}
+                                value={item.slug ? item.slug : "home"}
                                 component={RouterLink}
-                                to={ item.slug ? `/categorie/${item.slug}` : '/'}
+                                to={item.slug ? `/categorie/${item.slug}` : "/"}
                                 label={item.name.toUpperCase()}
                             />
-                        )
+                        );
                     })}
                 </Tabs>
                 <div className={classes.themeSwitch}>

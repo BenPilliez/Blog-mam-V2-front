@@ -1,75 +1,75 @@
-import React, { useEffect} from "react"
-import {connect} from "react-redux"
-import {Field, Form, Formik} from 'formik'
-import {Box, Button, InputAdornment, makeStyles} from '@material-ui/core'
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {TextField} from 'formik-material-ui'
-import {Signin} from "../../../store/actions/authActions"
-import {useSnackbar} from "notistack"
-import * as Yup from "yup"
+import React, {useEffect} from "react";
+import {connect} from "react-redux";
+import {Field, Form, Formik} from "formik";
+import {Box, Button, InputAdornment, makeStyles} from "@material-ui/core";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {TextField} from "formik-material-ui";
+import {Signin} from "../../../store/actions/authActions";
+import {useSnackbar} from "notistack";
+import * as Yup from "yup";
 
 const useStyles = makeStyles((theme) => ({
     form: {
-        width: '100%', // Fix IE 11 issue.
+        width: "100%", // Fix IE 11 issue.
         marginTop: theme.spacing(1),
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
     }
-}))
+}));
 
 const validationSchema = Yup.object({
     email: Yup
-        .string('Email')
-        .email('Il faut un email valide du type xxx@xxx.com')
-        .required('Le champ est obligatoire'),
+        .string("Email")
+        .email("Il faut un email valide du type xxx@xxx.com")
+        .required("Le champ est obligatoire"),
     password: Yup
-        .string('Mot de passe')
-        .required('Mot de passe obligatoire')
-})
+        .string("Mot de passe")
+        .required("Mot de passe obligatoire")
+});
 
 const initialValue = {
-    email: '',
-    password: ''
-}
+    email: "",
+    password: ""
+};
 
 const SignIn = (props) => {
 
 
-    const {logIn,error,user, handleClose} = props
-    const {enqueueSnackbar} = useSnackbar()
-    const classes = useStyles()
-    const [password, setPassword] = React.useState(true)
+    const {logIn, error, user, handleClose} = props;
+    const {enqueueSnackbar} = useSnackbar();
+    const classes = useStyles();
+    const [password, setPassword] = React.useState(true);
 
     useEffect(() => {
         if (error) {
             enqueueSnackbar(error, {
                 variant: "error",
                 persist: true,
-            })
+            });
         }
-        if(user){
-            handleClose()
+        if (user) {
+            handleClose();
         }
 
-    }, [error,user,handleClose,enqueueSnackbar])
+    }, [error, user, handleClose, enqueueSnackbar]);
 
 
-    const handleSubmit = (values,setSubmitting) => {
-        logIn(values)
-        setSubmitting(false)
-    }
+    const handleSubmit = (values, setSubmitting) => {
+        logIn(values);
+        setSubmitting(false);
+    };
 
     const handlePassword = () => {
-        setPassword(!password)
-    }
+        setPassword(!password);
+    };
 
     return (
         <React.Fragment>
             <Formik
                 validateOnChange
                 initialValues={initialValue}
-                onSubmit={(values, {setSubmitting}) => handleSubmit(values,setSubmitting)}
+                onSubmit={(values, {setSubmitting}) => handleSubmit(values, setSubmitting)}
                 validationSchema={validationSchema}
             >
                 {({submitForm, isSubmitting}) => (
@@ -97,12 +97,12 @@ const SignIn = (props) => {
                                 variant="outlined"
                                 fullWidth
                                 label="Mot de passe"
-                                type={password ? 'password' : 'text'}
+                                type={password ? "password" : "text"}
                                 name="password"
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment onClick={handlePassword} position="end">
-                                            {password ? <FontAwesomeIcon icon={'eye'}/> :
+                                            {password ? <FontAwesomeIcon icon={"eye"}/> :
                                                 <FontAwesomeIcon icon={"eye-slash"}/>}
                                         </InputAdornment>
                                     )
@@ -125,20 +125,20 @@ const SignIn = (props) => {
             </Formik>
         </React.Fragment>
 
-    )
-}
+    );
+};
 
 const mapStateToProps = (state) => {
     return {
         user: state.auth.user,
         error: state.auth.error
-    }
-}
+    };
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
         logIn: (credentials) => dispatch(Signin(credentials))
-    }
-}
+    };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn)
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

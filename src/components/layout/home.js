@@ -9,16 +9,17 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Link as RouterLink} from "react-router-dom";
 import {cardStyle} from "../../helpers/cardComponentStyle";
 
-const carouselParams = {
-    perPage: 4,
-    page: 0,
-    order: ["createdAt", "asc"]
-};
-
 const params = {
-    perPage: 10,
-    page: 0,
-    order: ["createdAt", "asc"]
+    home: {
+        perPage: 9,
+        page: 0,
+        order: ["createdAt", "asc"]
+    },
+    carousel: {
+        perPage: 4,
+        page: 0,
+        order: ["createdAt", "asc"]
+    }
 };
 
 const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost}) => {
@@ -26,20 +27,21 @@ const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost}) => 
     const classes = cardStyle();
 
     const [firstMount, setFirstMount] = React.useState(true);
-    const [page, setPage] = React.useState(params.page);
+    const [page, setPage] = React.useState(params.home.page + 1);
 
     useEffect(() => {
         if (firstMount) {
-            getPosts(params);
-            getCarouselPost(carouselParams);
+            getPosts(params.home);
+            getCarouselPost(params.carousel);
             setFirstMount(false);
         }
     }, [setFirstMount, getPosts, getCarouselPost, firstMount]);
 
     const handleChangePage = (event, newPage) => {
+        console.log(newPage);
         setPage(newPage);
-        params["page"] = newPage - 1;
-        getPosts(params);
+        params.home["page"] = newPage - 1;
+        getPosts(params.home);
     };
 
     return (
@@ -60,7 +62,7 @@ const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost}) => 
             <Container className={classes.root}>
                 <Grid container justify={"center"}>
                     {posts && posts.map((item, key) => {
-                        return <Grid key={key} item xs={12} lg={4} md={6} sm={6}>
+                        return <Grid key={key} item xs={12} lg={4} md={6} sm={7}>
                             <CustomCard
                                 props={{className: classes.cardRoot}}
                                 media={
