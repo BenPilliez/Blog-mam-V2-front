@@ -57,9 +57,6 @@ const SignUp = (props) => {
     const [confirmPassword, setConfirmPassword] = React.useState(true);
     const {enqueueSnackbar} = useSnackbar();
 
-    console.log(error);
-
-
     useEffect(() => {
         if (error) {
             enqueueSnackbar(error, {

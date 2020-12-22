@@ -86,7 +86,8 @@ const DetailPost = (props) => {
                         </Typography>
                     </Grid>
                 </Grid>}
-                {post && post.comments && <Comments comments={post.comments}/> && <FormComment submit={handleSubmit}/>}
+                {post && post.comments && <Comments comments={post.comments}/>}
+                {post && !loading &&  <FormComment submit={handleSubmit}/>}
                 {error && !loading && <Redirect to={"/404"}/>}
             </Container>
         </React.Fragment>
