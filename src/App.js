@@ -11,6 +11,8 @@ import {deepPurple, indigo, purple} from "@material-ui/core/colors";
 import CustomDialog from "./components/custom/customDialog";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {SnackbarProvider} from "notistack";
+import Footer from "./components/layout/footer";
+import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles((theme) => ({
     rootContent: {
@@ -85,6 +87,10 @@ function App() {
                                         <Redirect to={"/404"} from={"*"}/>
                                     </Switch>
                                 </main>
+                                <Divider style={{marginTop: '15%',}} />
+                               <footer>
+                                    <Footer />
+                                </footer>
                                 <CustomDialog
                                     handleClose={handleClose}
                                     title={"Connexion / Inscription"}
