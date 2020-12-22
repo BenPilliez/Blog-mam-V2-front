@@ -50,7 +50,7 @@ const DesktopNav = ({categories, isDark, handleChange, user, handleLogout, handl
                 }
                 return -1;
             }));
-            if (window.location.pathname === "/") {
+            if (window.location.pathname === "/" || window.location.pathname.includes('/post')) {
                 setValue("home");
             } else {
                 setValue(window.location.pathname.slice(11));
