@@ -22,7 +22,7 @@ const params = {
     }
 };
 
-const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost}) => {
+const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost, loadingState}) => {
 
     const classes = cardStyle();
 
@@ -103,7 +103,7 @@ const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost}) => 
                             />
                         </Grid>;
                     })}
-                    {posts && posts.length > 0 ? <Grid item container justify={"center"} xs={12}>
+                    {posts && !loadingState && posts.length > 0 ? <Grid item container justify={"center"} xs={12}>
                         <Pagination
                             className={classes.spacing}
                             component="div"
@@ -111,7 +111,7 @@ const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost}) => 
                             page={page}
                             onChange={handleChangePage}
                         />
-                    </Grid> : <div>No content</div>
+                    </Grid> : <div>Il n'y a pas encore de post pour le moment</div>
                     }
                 </Grid>
             </Container>
@@ -124,7 +124,8 @@ const mapStateToProps = (state) => {
     return {
         carouselItems: carouselItems,
         posts: state.posts.posts,
-        pagination: state.posts.pagination
+        pagination: state.posts.pagination,
+        loadingState: state.posts.loadingState
     };
 };
 

@@ -3,9 +3,10 @@ import {connect} from "react-redux";
 import {postComment} from "../../store/actions/commentsActions";
 import {getPostDetail} from "../../store/actions/postsActions";
 import {CardMedia, CircularProgress, Container, Grid, makeStyles, Typography} from "@material-ui/core";
-import Comments from "../comments/comments";
 import {useSnackbar} from "notistack";
+import Comments from "../comments/comments";
 import FormComment from "../comments/formComment";
+import {Redirect} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -20,14 +21,17 @@ const useStyles = makeStyles((theme) => ({
 
 const DetailPost = (props) => {
 
-    const {post, detailPost, user, postComment, commentSuccess} = props;
+    const {post, detailPost, user, postComment, commentSuccess, error} = props;
     const classes = useStyles();
+    const [loading, setLoading] = React.useState(true);
     const {enqueueSnackbar} = useSnackbar();
     const params = props.match.params.slug;
 
     useEffect(() => {
         detailPost(params);
-    }, [params, detailPost]);
+        setLoading(false);
+    }, [params, detailPost, loading, setLoading]);
+
 
     useEffect(() => {
         if (commentSuccess) {
@@ -57,7 +61,8 @@ const DetailPost = (props) => {
     return (
         <React.Fragment>
             <Container className={classes.root}>
-                {post ? <Grid container justify={"center"}>
+                {loading && <CircularProgress color={"primary"}/>}
+                {post && !loading && <Grid container justify={"center"}>
                     <Grid item xs={12}>
                         <Typography align={"center"} variant={"h4"}>
                             {post.title}
@@ -80,11 +85,10 @@ const DetailPost = (props) => {
                             {post.createdAt}, {post.user.username}
                         </Typography>
                     </Grid>
-                </Grid> : <CircularProgress color={"primary"}/>}
-                {post && post.comments && <Comments comments={post.comments}/>}
-                <FormComment submit={handleSubmit}/>
+                </Grid>}
+                {post && post.comments && <Comments comments={post.comments}/> && <FormComment submit={handleSubmit}/>}
+                {error && !loading && <Redirect to={"/404"}/>}
             </Container>
-
         </React.Fragment>
     );
 
@@ -94,11 +98,13 @@ const mapStateToProps = (state, ownProps) => {
     const detail = state.posts.postDetail.find((item) => {
         return item.slug === ownProps.match.params.slug;
     });
+
     return {
         post: detail,
         user: state.auth.user,
         commentSuccess: state.comment.success,
-        commentError: state.comment.error
+        commentError: state.comment.error,
+        error: state.posts.error
     };
 };
 

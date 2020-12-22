@@ -34,9 +34,10 @@ const FormComment = (props) => {
             <Formik
                 validateOnChange
                 initialValues={initialValue}
-                onSubmit={(values, {setSubmitting}) => {
+                onSubmit={(values, {setSubmitting, resetForm}) => {
                     submit(values);
                     setSubmitting(false);
+                    resetForm();
                 }}
                 validationSchema={validateSchema}
             >

@@ -13,7 +13,6 @@ const commentsReducers = (state = initState, actions) => {
                 success: false
             };
         case "COMMENT_POST_SUCCESS":
-            console.log("allo");
             return {
                 ...state,
                 success: true

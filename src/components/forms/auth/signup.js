@@ -3,10 +3,11 @@ import * as Yup from "yup";
 import {connect} from "react-redux";
 import {Field, Form, Formik} from "formik";
 import {TextField} from "formik-material-ui";
-import {Box, Button, InputAdornment, makeStyles} from "@material-ui/core";
+import {Box, Button, InputAdornment, makeStyles, Typography} from "@material-ui/core";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Signup} from "../../../store/actions/authActions";
 import {useSnackbar} from "notistack";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const useStyles = makeStyles((theme) => ({
     form: {
@@ -20,12 +21,16 @@ const useStyles = makeStyles((theme) => ({
 
 const initialValue = {
     username: "",
+    recaptcha: "",
     email: "",
     password: "",
     confirmPassword: ""
 };
 
 const validationSchema = Yup.object({
+    recaptcha: Yup
+        .string("ReCAPTCHA")
+        .required("Le champ est obligatoire"),
     username: Yup
         .string("Username")
         .required("Le champ est obligatoire"),
@@ -52,6 +57,9 @@ const SignUp = (props) => {
     const [confirmPassword, setConfirmPassword] = React.useState(true);
     const {enqueueSnackbar} = useSnackbar();
 
+    console.log(error);
+
+
     useEffect(() => {
         if (error) {
             enqueueSnackbar(error, {
@@ -65,10 +73,8 @@ const SignUp = (props) => {
     }, [error, successRegister, handleChange, enqueueSnackbar]);
 
     const handleSubmit = (values, setSubmitting) => {
-
         setSubmitting(false);
         signup(values);
-
     };
 
     const handlePassword = () => {
@@ -88,7 +94,7 @@ const SignUp = (props) => {
             validationSchema={validationSchema}
             onSubmit={(values, {setSubmitting}) => handleSubmit(values, setSubmitting)}
         >
-            {({submitForm, isSubmitting}) => (
+            {({submitForm, isSubmitting, setFieldValue, errors}) => (
                 <Form className={classes.form}>
                     <Box margin={2}>
                         <Field
@@ -169,6 +175,17 @@ const SignUp = (props) => {
                             S'inscrire
                         </Button>
                     </Box>
+                    <Field
+                        component={ReCAPTCHA}
+                        name={"recaptcha"}
+                        theme={"dark"}
+                        onChange={(response) => setFieldValue("recaptcha", response)}
+                        onExpired={() => setFieldValue('recaptcha', '')}
+                        sitekey={`${process.env.REACT_APP_RECAPTCHA}`}
+                    />
+                    <Typography variant={"subtitle1"} color={"error"}>
+                        {errors && errors.recaptcha}
+                    </Typography>
                 </Form>
             )}
         </Formik>

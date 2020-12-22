@@ -9,7 +9,6 @@ export const postComment = (form) => {
         dispatch(formSending());
         axiosInstance({url: `${process.env.REACT_APP_BASE_URL}/comments`, data: form, method: "POST"})
             .then(res => {
-                console.log(res);
                 dispatch({type: "COMMENT_POST_SUCCESS"});
             }).catch(error => {
             console.error(error);
@@ -23,7 +22,6 @@ export const replyComment = (form) => {
         dispatch(formSending());
         axiosInstance({url: `${process.env.REACT_APP_BASE_URL}/comments/reply`, data: form, method: "POST"})
             .then(res => {
-                console.log(res);
                 dispatch({type: "COMMENT_POST_SUCCESS"});
             }).catch(error => {
             console.error(error);

@@ -5,7 +5,8 @@ import DetailCategories from "./components/categories/detailCategories";
 import Home from "./components/layout/home";
 import DetailPost from "./components/posts/detailPost";
 import AuthForm from "./components/forms/auth";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import NotFoundPage from "./components/layout/notFound";
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import {deepPurple, indigo, purple} from "@material-ui/core/colors";
 import CustomDialog from "./components/custom/customDialog";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -13,7 +14,9 @@ import {SnackbarProvider} from "notistack";
 
 const useStyles = makeStyles((theme) => ({
     rootContent: {
-        paddingTop: 60
+        [theme.breakpoints.up('md')] :{
+            paddingTop: 60
+        }
     },
     paper: {
         minHeight: "100vh",
@@ -78,6 +81,8 @@ function App() {
                                         <Route exact path={"/"} component={Home}/>
                                         <Route path={"/categorie/:slug"} component={DetailCategories}/>
                                         <Route path={"/post/:slug"} component={DetailPost}/>
+                                        <Route path={"/404"} component={NotFoundPage}/>
+                                        <Redirect to={"/404"} from={"*"}/>
                                     </Switch>
                                 </main>
                                 <CustomDialog

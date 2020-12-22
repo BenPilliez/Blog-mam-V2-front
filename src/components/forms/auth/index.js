@@ -36,11 +36,20 @@ const AuthForm = ({handleClose}) => {
     const [signIn, setSignIn] = React.useState(true);
     const classes = useStyles();
 
-    const handleChange = React.useCallback(() => {
+   /* const handleChange = React.useCallback(() => {
+
         setSignIn(s => !s);
         setSignUp(s => !s);
+        console.log(signUp, signIn)
     }, [setSignIn, setSignUp]);
 
+*/
+
+    const handleChange = () => {
+        setSignUp(s => !s);
+        setSignIn(s => !s);
+
+    }
     return (
         <React.Fragment>
             <Grid container component={"main"} className={classes.root}>
