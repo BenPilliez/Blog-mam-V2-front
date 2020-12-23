@@ -1,12 +1,5 @@
 import {setAuthorization} from "../../config/axiosConfig";
 
-
-export const ResetState = () => {
-    return (dispatch) => {
-        dispatch({type: "AUTH_RESET_STATE"});
-    };
-};
-
 export const sendForm = () => {
     return (dispatch) => {
         dispatch({type: "FORM_SENDING"});
@@ -56,5 +49,38 @@ export const Signin = (credentials) => {
             dispatch({type: "AUTH_SIGNIN_FAILED", error: err.response.data.error});
 
         });
+    };
+};
+
+export const updateUser = (userId, form) => {
+    return (dispatch, getState, {axiosInstance}) => {
+        dispatch(sendForm());
+        console.log(form)
+        axiosInstance({
+            url: `${process.env.REACT_APP_BASE_URL}/users/${userId}`, data: form, method: "PUT",
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        })
+            .then(res => {
+                localStorage.setItem("user", JSON.stringify(res.data));
+                dispatch({type: "AUTH_UPDATE_SUCCESS", user: res.data});
+            })
+            .catch(err => {
+                console.log(err);
+                dispatch({type: "AUTH_UPDATE_FAILED", err: err.response.data.error});
+            });
+    };
+};
+export const DeleteUser = (id) => {
+    return (dispatch, getState, {axiosInstance}) => {
+        dispatch(sendForm());
+        axiosInstance({url: `${process.env.REACT_APP_BASE_URL}/users`, data: {id: id}, method: "DELETE"})
+            .then(res => {
+                dispatch({type: "AUTH_DELETE_USER"});
+            })
+            .catch(err => {
+                dispatch({type: "AUTH_DELETE_FAILED", error: true});
+            });
     };
 };

@@ -55,6 +55,7 @@ function App() {
             }
         }
     });
+
     const handleThemeChange = () => {
         setDarkState(!darkState);
         localStorage.setItem("darkState", !darkState);
@@ -80,7 +81,8 @@ function App() {
                             <Grid item xs={12}>
 
                                 <NavBar isDark={darkState} handleChange={handleThemeChange}
-                                        handleOpen={() => setOpen(true)}/>
+                                        handleOpen={() => setOpen(true)}
+                                />
                                 <main className={classes.rootContent}>
                                     <Switch>
                                         <Route exact path={"/"} component={Home}/>
@@ -103,7 +105,6 @@ function App() {
                                     fullScreen={true}>
                                     <AuthForm handleClose={handleClose}/>
                                 </CustomDialog>
-
                             </Grid>
                         </Grid>
                     </SnackbarProvider>

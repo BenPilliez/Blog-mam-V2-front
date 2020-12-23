@@ -1,7 +1,8 @@
 const initialState = {
     user: JSON.parse(localStorage.getItem("user")) || null,
     successRegister: false,
-    error: null
+    error: null,
+    deleteError: false
 };
 
 const authReducers = (state = initialState, actions) => {
@@ -34,6 +35,17 @@ const authReducers = (state = initialState, actions) => {
                 ...state,
                 successRegister: true
             };
+        case "AUTH_UPDATE_SUCCESS":
+            return {
+                ...state,
+                user: actions.user
+            };
+
+        case "AUTH_UPDATE_FAILED":
+            return {
+                ...state,
+                error: actions.err
+            };
         case "FORM_SENDING":
             console.log("FORM_SENDING");
             return {
@@ -41,10 +53,13 @@ const authReducers = (state = initialState, actions) => {
                 error: null
             };
 
-        case "AUTH_RESET_STATE":
+        case "AUTH_DELETE_USER":
+            return state;
+
+        case "AUTH_DELETE_FAILED":
             return {
                 ...state,
-                error: null
+                deleteError: actions.error
             };
         default :
             return state;

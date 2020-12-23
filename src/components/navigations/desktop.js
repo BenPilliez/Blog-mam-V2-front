@@ -32,12 +32,21 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const DesktopNav = ({categories, isDark, handleChange, user, handleLogout, handleOpen}) => {
+const DesktopNav = ({
+                        categories,
+                        isDark,
+                        handleChange,
+                        user,
+                        handleLogout,
+                        handleAvatar,
+                        handleOpen,
+                        handleDelete
+                    }) => {
 
 
     const [value, setValue] = React.useState();
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const [files] = React.useState(user ? user.avatar : "");
+    const [files, setFiles] = React.useState(user ? user.avatar : "");
     const [cat, setCat] = React.useState();
     const isMenuOpen = Boolean(anchorEl);
     const classes = useStyles();
@@ -50,13 +59,16 @@ const DesktopNav = ({categories, isDark, handleChange, user, handleLogout, handl
                 }
                 return -1;
             }));
-            if (window.location.pathname === "/" || window.location.pathname.includes('/post') || window.location.pathname === "/404" ) {
+            if (window.location.pathname === "/" || window.location.pathname.includes("/post") || window.location.pathname === "/404") {
                 setValue("home");
             } else {
                 setValue(window.location.pathname.slice(11));
             }
         }
-    }, [categories]);
+        if (user && user.avatar) {
+            setFiles(user.avatar);
+        }
+    }, [categories, user, setFiles]);
 
     const handleChangeTabsValue = (event, newValue) => {
         setValue(newValue);
@@ -78,7 +90,17 @@ const DesktopNav = ({categories, isDark, handleChange, user, handleLogout, handl
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Mon compte</MenuItem>
+            <MenuItem onClick={() => {
+                handleAvatar();
+                handleMenuClose();
+            }}>Changer Avatar</MenuItem>
+            <MenuItem onClick={() => {
+                handleMenuClose();
+            }}>Changer mot de passe</MenuItem>
+            <MenuItem onClick={() => {
+                handleDelete();
+                handleMenuClose();
+            }}>Supprimer mon compte</MenuItem>
             <MenuItem onClick={() => {
                 handleLogout();
                 handleMenuClose();
