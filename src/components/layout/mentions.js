@@ -32,12 +32,12 @@ const Mentions = () => {
 
                         <Typography variant={"body1"}>
 
-                            Le site blog-passetemps.benpilliez.com est édité par :
+                            Le site blog-passetemps.benpilliez.com est édité par : <br />
 
-                            Pilliez Benjamin
-                            8, rue depoorter
-                            59190 Hazebrouck
-                            FRANCE
+                            Pilliez Benjamin<br />
+                            8, rue depoorter<br />
+                            59190 Hazebrouck<br />
+                            FRANCE<br />
 
                         </Typography>
                     </Grid>
@@ -59,11 +59,11 @@ const Mentions = () => {
                         </Typography>
 
                         <Typography variant={"body1"}>
-                            SARL o2switch
-                            222-224 Boulevard Gustave Flaubert
-                            63000 Clermont-Ferrand
+                            SARL o2switch<br />
+                            222-224 Boulevard Gustave Flaubert<br />
+                            63000 Clermont-Ferrand<br />
                             o2switch est un hébergeur web indépendant, membre du RIPE (AS50474) et opérateur déclaré à
-                            l'ARCEP.
+                            l'ARCEP.<br />
                             Courriel : support@o2switch.fr - Téléphone : +33 4 44 44 60 40
                         </Typography>
                     </Grid>
@@ -75,7 +75,7 @@ const Mentions = () => {
                         </Typography>
 
                         <Typography variant={"body1"}>
-                            Email : benjamin.piliez@gmail.com
+                            Email : benjamin.piliez@gmail.com<br />
                             Téléphone : 0607760215
                         </Typography>
                     </Grid>
