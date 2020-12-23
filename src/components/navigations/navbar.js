@@ -8,6 +8,7 @@ import {DeleteUser, signOut} from "../../store/actions/authActions";
 import AlertDialogSlide from "../custom/alertDialog";
 import CustomDialog from "../custom/customDialog";
 import FormAvatar from "../forms/avatarForm";
+import FormPassword from "../forms/passwordForm";
 
 
 const NavBar = (props) => {
@@ -16,6 +17,7 @@ const NavBar = (props) => {
     const [avatar, setAvatar] = React.useState(false);
     const [deleteRequest, setDeleteRequest] = React.useState(false);
     const [openDelete, setOpenDelete] = React.useState(false);
+    const [openPassword, setOpenPassword] = React.useState(false);
     const {
         isDark,
         handleChange,
@@ -52,6 +54,10 @@ const NavBar = (props) => {
         deleteUser(user.id);
     };
 
+    const handlePassword = () => {
+        setOpenPassword(open => !open);
+    };
+
     const matches = useMediaQuery(theme => theme.breakpoints.down("sm") || theme.breakpoints.down("xs"));
 
     return (
@@ -70,6 +76,7 @@ const NavBar = (props) => {
                     categories={categories}
                     handleDelete={handleDelete}
                     handleAvatar={handleAvatar}
+                    handlePassword={handlePassword}
                     handleOpen={handleOpen}
                     isDark={isDark}
                     handleChange={handleChange}
@@ -84,6 +91,10 @@ const NavBar = (props) => {
 
             <CustomDialog handleClose={handleAvatar} title={"Changer votre avatar"} isOpen={avatar}>
                 <FormAvatar handleClose={handleAvatar}/>
+            </CustomDialog>
+
+            <CustomDialog handleClose={handlePassword} title={"Changer votre avatar"} isOpen={openPassword}>
+                <FormPassword handleClose={handlePassword}/>
             </CustomDialog>
 
         </React.Fragment>

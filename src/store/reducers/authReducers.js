@@ -2,6 +2,7 @@ const initialState = {
     user: JSON.parse(localStorage.getItem("user")) || null,
     successRegister: false,
     error: null,
+    success: false,
     deleteError: false
 };
 
@@ -13,7 +14,7 @@ const authReducers = (state = initialState, actions) => {
             return {
                 ...state,
                 error: null,
-                user: null
+                user: null,
             };
         case "AUTH_SIGNIN_FAILED" :
             return {
@@ -40,7 +41,16 @@ const authReducers = (state = initialState, actions) => {
                 ...state,
                 user: actions.user
             };
-
+        case "AUTH_UPDATE_PASSWORD_SUCCESS":
+            return {
+                ...state,
+                success: true
+            };
+        case "AUTH_UPDATE_PASSWORD_FAILED":
+            return {
+                ...state,
+                error: actions.error
+            };
         case "AUTH_UPDATE_FAILED":
             return {
                 ...state,
@@ -50,11 +60,15 @@ const authReducers = (state = initialState, actions) => {
             console.log("FORM_SENDING");
             return {
                 ...state,
-                error: null
+                error: null,
+                success: false
             };
 
         case "AUTH_DELETE_USER":
-            return state;
+            return {
+                ...state,
+                success: true,
+            };
 
         case "AUTH_DELETE_FAILED":
             return {

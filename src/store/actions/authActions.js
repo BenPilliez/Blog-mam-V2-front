@@ -55,7 +55,6 @@ export const Signin = (credentials) => {
 export const updateUser = (userId, form) => {
     return (dispatch, getState, {axiosInstance}) => {
         dispatch(sendForm());
-        console.log(form)
         axiosInstance({
             url: `${process.env.REACT_APP_BASE_URL}/users/${userId}`, data: form, method: "PUT",
             headers: {
@@ -72,12 +71,26 @@ export const updateUser = (userId, form) => {
             });
     };
 };
+
+export const UpdatePassword = (id, form) => {
+    return (dispatch, getState, {axiosInstance}) => {
+        dispatch(sendForm());
+        axiosInstance({url: `${process.env.REACT_APP_BASE_URL}/users/password/${id}`, data: form, method:'PUT'})
+            .then(res => {
+                dispatch({type:'AUTH_UPDATE_PASSWORD_SUCCESS', success:true})
+            })
+            .catch(error => {
+                dispatch({type: 'AUTH_UPDATE_PASSWORD_FAILED', error: error.response.data.error})
+            })
+    }
+}
+
 export const DeleteUser = (id) => {
     return (dispatch, getState, {axiosInstance}) => {
         dispatch(sendForm());
         axiosInstance({url: `${process.env.REACT_APP_BASE_URL}/users`, data: {id: id}, method: "DELETE"})
             .then(res => {
-                dispatch({type: "AUTH_DELETE_USER"});
+                dispatch({type: "AUTH_DELETE_USER", success:true});
             })
             .catch(err => {
                 dispatch({type: "AUTH_DELETE_FAILED", error: true});

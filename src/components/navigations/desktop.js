@@ -40,7 +40,8 @@ const DesktopNav = ({
                         handleLogout,
                         handleAvatar,
                         handleOpen,
-                        handleDelete
+                        handleDelete,
+                        handlePassword
                     }) => {
 
 
@@ -95,6 +96,7 @@ const DesktopNav = ({
                 handleMenuClose();
             }}>Changer Avatar</MenuItem>
             <MenuItem onClick={() => {
+                handlePassword();
                 handleMenuClose();
             }}>Changer mot de passe</MenuItem>
             <MenuItem onClick={() => {
