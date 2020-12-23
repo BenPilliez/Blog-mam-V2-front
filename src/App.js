@@ -13,6 +13,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {SnackbarProvider} from "notistack";
 import Footer from "./components/layout/footer";
 import About from "./components/layout/about";
+import Mentions from "./components/layout/mentions";
 
 const useStyles = makeStyles((theme) => ({
     rootContent: {
@@ -84,6 +85,7 @@ function App() {
                                         <Route path={"/categorie/:slug"} component={DetailCategories}/>
                                         <Route path={"/post/:slug"} component={DetailPost}/>
                                         <Route path={"/a-propos"} component={About}/>
+                                        <Route path={"/mentions-legales"} component={Mentions}/>
                                         <Route path={"/404"} component={NotFoundPage}/>
                                         <Redirect to={"/404"} from={"*"}/>
                                     </Switch>

@@ -11,11 +11,21 @@ const Footer = (props) => {
             <Typography variant="caption" align={"center"} color={"primary"}>
                 © Copyright Benjamin Pilliez {new Date().getFullYear()}
             </Typography>
+
             <Divider style={{margin: "24px auto", width: 60}}/>
             <Grid container justify={"center"}>
                 <Grid item xs={12} sm={6} md={3}>
+                    <Typography  align={"center"} color={"primary"}>
+                        <Link component={RouterLink} to={"/mentions-legales"} >Mentions légales</Link>
+                    </Typography>
+                    <Typography align={"center"} color={"primary"}>
+                        <Link component={RouterLink} to={"/vie-privee"} >Vie privée</Link>
+                    </Typography>
+
+                </Grid>
+                <Grid item xs={12} sm={6} md={3}>
                     {categories && categories.map((item, index) => {
-                        return <Typography align={"left"} gutterBottom color={"textSecondary"} key={index}>
+                        return <Typography align={"center"} gutterBottom color={"textSecondary"} key={index}>
                             <Link component={RouterLink} to={"/categorie/" + item.slug}
                                   color={"primary"}>{item.slug.toUpperCase()}</Link>
                         </Typography>;
