@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
-import {CircularProgress, Container, Grid, Typography} from "@material-ui/core";
+import {CircularProgress, Container, Grid, makeStyles, Typography} from "@material-ui/core";
 import {detailCategory} from "../../store/actions/categoriesActions";
 import {paginate} from "../../helpers/paginate";
 import {cardStyle} from "../../helpers/cardComponentStyle";
@@ -9,6 +9,13 @@ import CustomCard from "../custom/card/customCard";
 import {Link as RouterLink} from "react-router-dom";
 import {Pagination} from "@material-ui/lab";
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+        minHeight: "100vh",
+        marginTop: theme.spacing(8)
+    }
+}));
+
 const DetailCategories = (props) => {
 
     const {categoryDetail, getCategoryDetail} = props;
@@ -16,6 +23,7 @@ const DetailCategories = (props) => {
     const [onLoad, setOnLoad] = React.useState(true);
     const params = props.match.params.slug;
     const classes = cardStyle();
+    const rootClasses = useStyles();
 
     const pagination = {
         perPage: 9,
@@ -37,7 +45,7 @@ const DetailCategories = (props) => {
 
     return (
         <React.Fragment>
-            <Container>
+            <Container className={rootClasses.root}>
                 {categoryDetail && onLoad && <CircularProgress color={"primary"}/>}
                 {categoryDetail && !onLoad ?
                     <Grid container justify={"center"}>
@@ -89,15 +97,15 @@ const DetailCategories = (props) => {
                             </Grid>;
                         }) : null}
                         {categoryDetail.posts && categoryDetail.posts.length > 0 ?
-                        <Grid item container justify={"center"} xs={12}>
-                            <Pagination
-                                className={classes.spacing}
-                                component="div"
-                                count={pagination.totalPages}
-                                page={page}
-                                onChange={handleChangePage}
-                            />
-                        </Grid> : <div>Il n'y a encore aucun posts pour cette catégorie</div>}
+                            <Grid item container justify={"center"} xs={12}>
+                                <Pagination
+                                    className={classes.spacing}
+                                    component="div"
+                                    count={pagination.totalPages}
+                                    page={page}
+                                    onChange={handleChangePage}
+                                />
+                            </Grid> : <div>Il n'y a encore aucun posts pour cette catégorie</div>}
                     </Grid> : null}
             </Container>
         </React.Fragment>

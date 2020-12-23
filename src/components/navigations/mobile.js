@@ -61,12 +61,16 @@ const MobileNav = ({categories, isDark, handleChange, handleOpen, user, handleLo
                 <Drawer classes={{paper: classes.MuiDrawer}} anchor={"bottom"} open={open} onClose={handleDrawer}>
                     <List>
                         <div className={classes.header}>
-                            <ListItem classes={{button: classes.MuiButton}} button component={RouterLink} to={"/"}>
+
+                            <ListItem classes={{button: classes.MuiButton}} button
+                                      onClick={() => user ? handleLogout() : handleOpen()}>
                                 <ListItemIcon>
-                                    <FontAwesomeIcon size={"lg"} icon={"home"}/>
+                                    {user ? <FontAwesomeIcon size={"lg"} icon={"sign-out-alt"}/> :
+                                        <FontAwesomeIcon size={"lg"} icon={"sign-in-alt"}/>}
                                 </ListItemIcon>
-                                <ListItemText primary={"Accueil"}/>
+                                <ListItemText primary={user ? "Se déconnecter" : "Se connecter"}/>
                             </ListItem>
+
                             <ListItem classes={{button: classes.MuiButton}} button>
                                 <ListItemIcon>
                                     <ThemeSwitch
@@ -76,16 +80,14 @@ const MobileNav = ({categories, isDark, handleChange, handleOpen, user, handleLo
                                 </ListItemIcon>
                                 <ListItemText primary={isDark ? "Light Mode" : "Dark Mode"}/>
                             </ListItem>
-
                         </div>
-                        <ListItem classes={{button: classes.MuiButton}} button
-                                  onClick={() => user ? handleLogout() : handleOpen()}>
+                        <ListItem classes={{button: classes.MuiButton}} button component={RouterLink} to={"/"}>
                             <ListItemIcon>
-                                {user ? <FontAwesomeIcon size={"lg"} icon={"sign-out-alt"}/> :
-                                    <FontAwesomeIcon size={"lg"} icon={"sign-in-alt"}/>}
+                                <FontAwesomeIcon size={"lg"} icon={"home"}/>
                             </ListItemIcon>
-                            <ListItemText primary={user ? "Se déconnecter" : "Se connecter"}/>
+                            <ListItemText primary={"Accueil"}/>
                         </ListItem>
+
                         <ListItem classes={{button: classes.MuiButton}} button onClick={handleCategories}>
                             <ListItemIcon>
                                 <FontAwesomeIcon size={"lg"} icon={"folder"}/>

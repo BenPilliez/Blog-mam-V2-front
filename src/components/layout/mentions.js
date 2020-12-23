@@ -1,5 +1,5 @@
 import React from "react";
-import {Container, Divider, Grid, makeStyles, Typography} from "@material-ui/core";
+import {Container, Divider, Grid, Link, makeStyles, Typography} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -32,16 +32,16 @@ const Mentions = () => {
 
                         <Typography variant={"body1"}>
 
-                            Le site blog-passetemps.benpilliez.com est édité par : <br />
+                            Le site blog-passetemps.benpilliez.com est édité par : <br/>
 
-                            Pilliez Benjamin<br />
-                            8, rue depoorter<br />
-                            59190 Hazebrouck<br />
-                            FRANCE<br />
+                            Pilliez Benjamin<br/>
+                            8, rue depoorter<br/>
+                            59190 Hazebrouck<br/>
+                            FRANCE<br/>
 
                         </Typography>
                     </Grid>
-                    <Divider className={classes.divider} />
+                    <Divider className={classes.divider}/>
                     <Grid item xs={12}>
                         <Typography variant={"h3"}>
                             Administrateur
@@ -52,30 +52,30 @@ const Mentions = () => {
                         </Typography>
                     </Grid>
 
-                    <Divider className={classes.divider} />
+                    <Divider className={classes.divider}/>
                     <Grid item xs={12}>
                         <Typography variant={"h3"}>
                             Hébergement
                         </Typography>
 
                         <Typography variant={"body1"}>
-                            SARL o2switch<br />
-                            222-224 Boulevard Gustave Flaubert<br />
-                            63000 Clermont-Ferrand<br />
+                            SARL o2switch<br/>
+                            222-224 Boulevard Gustave Flaubert<br/>
+                            63000 Clermont-Ferrand<br/>
                             o2switch est un hébergeur web indépendant, membre du RIPE (AS50474) et opérateur déclaré à
-                            l'ARCEP.<br />
+                            l'ARCEP.<br/>
                             Courriel : support@o2switch.fr - Téléphone : +33 4 44 44 60 40
                         </Typography>
                     </Grid>
 
-                    <Divider className={classes.divider} />
+                    <Divider className={classes.divider}/>
                     <Grid item xs={12}>
                         <Typography variant={"h3"}>
                             Contact
                         </Typography>
 
                         <Typography variant={"body1"}>
-                            Email : benjamin.piliez@gmail.com<br />
+                            Email : <Link href={"mailto:benjamin.piliez@gmail.com"} > benjamin.piliez@gmail.com</Link><br/>
                             Téléphone : 0607760215
                         </Typography>
                     </Grid>

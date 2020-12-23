@@ -1,19 +1,21 @@
 import React from "react";
 import NavBar from "./components/navigations/navbar";
 import {createMuiTheme, CssBaseline, Grid, makeStyles, ThemeProvider} from "@material-ui/core";
-import DetailCategories from "./components/categories/detailCategories";
 import Home from "./components/layout/home";
+import DetailCategories from "./components/categories/detailCategories";
 import DetailPost from "./components/posts/detailPost";
 import AuthForm from "./components/forms/auth";
 import NotFoundPage from "./components/layout/notFound";
+import Footer from "./components/layout/footer";
+import About from "./components/layout/about";
+import Mentions from "./components/layout/mentions";
+import PrivateLife from "./components/layout/private";
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import {deepPurple, indigo, purple} from "@material-ui/core/colors";
 import CustomDialog from "./components/custom/customDialog";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {SnackbarProvider} from "notistack";
-import Footer from "./components/layout/footer";
-import About from "./components/layout/about";
-import Mentions from "./components/layout/mentions";
+
 
 const useStyles = makeStyles((theme) => ({
     rootContent: {
@@ -86,6 +88,7 @@ function App() {
                                         <Route path={"/post/:slug"} component={DetailPost}/>
                                         <Route path={"/a-propos"} component={About}/>
                                         <Route path={"/mentions-legales"} component={Mentions}/>
+                                        <Route path={"/vie-privee"} component={PrivateLife}/>
                                         <Route path={"/404"} component={NotFoundPage}/>
                                         <Redirect to={"/404"} from={"*"}/>
                                     </Switch>
