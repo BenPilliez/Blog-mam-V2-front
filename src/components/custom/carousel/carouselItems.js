@@ -15,6 +15,9 @@ import {Link as RouterLink} from "react-router-dom";
 
 const useStyle = makeStyles((theme) => ({
     card: {
+        [theme.breakpoints.down("sm") || theme.breakpoints.down("xs")  ] : {
+            minHeight: 400
+        },
         minHeight: 600,
         position: "relative",
         backgroundRepeat: "no-repeat",
@@ -40,7 +43,8 @@ const useStyle = makeStyles((theme) => ({
         margin: "15px 0",
         fontSize: "25px",
         lineHeight: "32px",
-        color: "white"
+        fontWeight: 'bold',
+        color: theme.palette.secondary.main
     },
     list: {
         display: "flex",

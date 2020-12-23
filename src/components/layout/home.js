@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {carouselPost, getPosts} from "../../store/actions/postsActions";
 import CustomCarousel from "../custom/carousel/carousel";
-import {Container, Grid, Typography} from "@material-ui/core";
+import {Container, Grid, Typography, useMediaQuery} from "@material-ui/core";
 import CustomCard from "../custom/card/customCard";
 import {Pagination} from "@material-ui/lab";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -28,6 +28,8 @@ const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost, load
 
     const [firstMount, setFirstMount] = React.useState(true);
     const [page, setPage] = React.useState(params.home.page + 1);
+    const matches = useMediaQuery(theme => theme.breakpoints.down("sm") || theme.breakpoints.down("xs"));
+
 
     useEffect(() => {
         if (firstMount) {
@@ -54,7 +56,7 @@ const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost, load
                         touchMove: false,
                         autoplay: true,
                         speed: 500,
-                        slidesToShow: 3,
+                        slidesToShow: matches ? 2 : 3,
                         slidesToScroll: 1
                     }}
                 items={carouselItems}

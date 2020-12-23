@@ -28,7 +28,7 @@ const CustomCarousel = ({items, carouselOptions}) => {
 
         return (
             <IconButton className={clsx(classes.arrow, classes.next)} onClick={onClick}>
-                <FontAwesomeIcon color={"white"} icon={"arrow-right"}/>
+                <FontAwesomeIcon color={"red"} icon={"arrow-right"}/>
             </IconButton>
         );
     };
@@ -38,7 +38,7 @@ const CustomCarousel = ({items, carouselOptions}) => {
 
         return (
             <IconButton className={clsx(classes.arrow, classes.prev)} onClick={onClick}>
-                <FontAwesomeIcon color={"white"} icon={"arrow-left"}/>
+                <FontAwesomeIcon color={"red"} icon={"arrow-left"}/>
             </IconButton>
         );
     };

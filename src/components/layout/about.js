@@ -4,7 +4,7 @@ import AvatarImage from "../../images/avatar.png"
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        height: "60vh",
+        minHeight: "60vh",
     },
     image: {
         backgroundImage: `url(${AvatarImage})`,

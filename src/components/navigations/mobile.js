@@ -75,7 +75,7 @@ const MobileNav = ({
                 </Toolbar>
                 <Drawer classes={{paper: classes.MuiDrawer}} anchor={"bottom"} open={open} onClose={handleDrawer}>
                     <List>
-                        <ListItem classes={{button: classes.MuiButton}} button>
+                        <ListItem classes={{button: classes.MuiButton}} button onClick={handleChange}>
                             <ListItemIcon>
                                 <ThemeSwitch
                                     handleChange={handleChange}
