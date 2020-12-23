@@ -18,6 +18,10 @@ const NavBar = (props) => {
     const [deleteRequest, setDeleteRequest] = React.useState(false);
     const [openDelete, setOpenDelete] = React.useState(false);
     const [openPassword, setOpenPassword] = React.useState(false);
+
+
+
+
     const {
         isDark,
         handleChange,
@@ -67,6 +71,7 @@ const NavBar = (props) => {
                     handleLogout={logout}
                     handleDelete={handleDelete}
                     handleAvatar={handleAvatar}
+                    handlePassword={handlePassword}
                     handleOpen={handleOpen}
                     isDark={isDark}
                     handleChange={handleChange}
@@ -89,11 +94,11 @@ const NavBar = (props) => {
                 title={"Supprimer ?"}
                 content={"Tu es sur le point de supprimer ton compte?"}/>
 
-            <CustomDialog handleClose={handleAvatar} title={"Changer votre avatar"} isOpen={avatar}>
+            <CustomDialog handleClose={handleAvatar} title={"Changer votre avatar"} isOpen={avatar} fullScreen={matches}>
                 <FormAvatar handleClose={handleAvatar}/>
             </CustomDialog>
 
-            <CustomDialog handleClose={handlePassword} title={"Changer votre avatar"} isOpen={openPassword}>
+            <CustomDialog handleClose={handlePassword} title={"Changer votre avatar"} isOpen={openPassword} fullScreen={matches}>
                 <FormPassword handleClose={handlePassword}/>
             </CustomDialog>
 

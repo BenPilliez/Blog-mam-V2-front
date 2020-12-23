@@ -20,6 +20,7 @@ import {
     faSun,
     faTh,
     faTimes,
+    faTrash,
     faUser
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -44,7 +45,8 @@ library.add(
     faCalendarAlt,
     faArrowRight,
     faArrowLeft,
-    faReply
+    faReply,
+    faTrash
 );
 
 
