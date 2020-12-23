@@ -2,14 +2,9 @@ import React from "react";
 import {Field, Form, Formik} from "formik";
 import {TextField} from "formik-material-ui";
 import * as Yup from "yup";
-import {Box, Button, makeStyles, Typography} from "@material-ui/core";
-import ReCAPTCHA from "react-google-recaptcha";
-
+import {Box, Button, makeStyles} from "@material-ui/core";
 
 const validateSchema = Yup.object({
-    recaptcha: Yup
-        .string("ReCAPTCHA")
-        .required("Le champ est obligatoire"),
     content: Yup
         .string("Commentaire")
         .required("Le champ est obligatoire")
@@ -17,7 +12,6 @@ const validateSchema = Yup.object({
 
 const initialValue = {
     content: "",
-    recaptcha: ""
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -47,7 +41,7 @@ const FormComment = (props) => {
                 }}
                 validationSchema={validateSchema}
             >
-                {({submitForm, isSubmitting, setFieldValue,errors}) => (
+                {({submitForm, isSubmitting}) => (
                     <Form className={classes.form}>
                         <Box margin={2}>
                             <Field
@@ -59,20 +53,7 @@ const FormComment = (props) => {
                                 name="content"
                             />
                         </Box>
-                        <Box margin={2}>
-                            <Field
-                                component={ReCAPTCHA}
-                                name={"recaptcha"}
-                                theme={"dark"}
-                                onChange={(response) => setFieldValue("recaptcha", response)}
-                                onExpired={() => setFieldValue("recaptcha", "")}
-                                sitekey={`${process.env.REACT_APP_RECAPTCHA}`}
-                            />
-                            <Typography variant={"subtitle1"} color={"error"}>
-                                {errors && errors.recaptcha}
-                            </Typography>
 
-                        </Box>
                         <Box margin={2}>
                             <Button
                                 type="submit"

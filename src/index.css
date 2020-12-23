@@ -61,3 +61,12 @@ code {
 }
 
 .slick-list, .slick-track { touch-action:pan-y; }
+
+.cc_dialog.interstitial {
+  right: 3vw;
+  bottom: 0;
+  top:auto;
+  left: 3vw;
+  max-width: 100%;
+  position: fixed;
+}

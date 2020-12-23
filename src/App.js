@@ -12,11 +12,11 @@ import CustomDialog from "./components/custom/customDialog";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {SnackbarProvider} from "notistack";
 import Footer from "./components/layout/footer";
-import Divider from "@material-ui/core/Divider";
+import About from "./components/layout/about";
 
 const useStyles = makeStyles((theme) => ({
     rootContent: {
-        [theme.breakpoints.up('md')] :{
+        [theme.breakpoints.up("md")]: {
             paddingTop: 60
         }
     },
@@ -83,13 +83,13 @@ function App() {
                                         <Route exact path={"/"} component={Home}/>
                                         <Route path={"/categorie/:slug"} component={DetailCategories}/>
                                         <Route path={"/post/:slug"} component={DetailPost}/>
+                                        <Route path={"/a-propos"} component={About}/>
                                         <Route path={"/404"} component={NotFoundPage}/>
                                         <Redirect to={"/404"} from={"*"}/>
                                     </Switch>
                                 </main>
-                                <Divider style={{marginTop: '15%',}} />
-                               <footer>
-                                    <Footer />
+                                <footer>
+                                    <Footer/>
                                 </footer>
                                 <CustomDialog
                                     handleClose={handleClose}
