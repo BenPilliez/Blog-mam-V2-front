@@ -42,7 +42,6 @@ const FormAvatar = (props) => {
     }, [handleClose, error, handleUpdate, setHandleUpdate, enqueueSnackbar]);
 
     const handleSubmit = (values) => {
-        console.log(values);
         const form = converFormToFormData(values);
         uploadAvatar(user.id, form);
         setHandleUpdate(true);
