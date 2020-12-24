@@ -1,6 +1,5 @@
 export const getCategories = () => {
     return (dispatch, getState, {axiosInstance}) => {
-        console.log("GET CATEGORIES");
         axiosInstance({url: `${process.env.REACT_APP_BASE_URL}/category`, method: "GET"})
             .then(res => {
                 dispatch({type: "CATEGORIES_LOAD_SUCCESS", categories: res.data.items});

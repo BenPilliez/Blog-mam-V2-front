@@ -57,7 +57,6 @@ const authReducers = (state = initialState, actions) => {
                 error: actions.err
             };
         case "FORM_SENDING":
-            console.log("FORM_SENDING");
             return {
                 ...state,
                 error: null,

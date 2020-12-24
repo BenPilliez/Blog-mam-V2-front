@@ -11,7 +11,6 @@ export const carouselPost = (params) => {
                 dispatch({type: "GET_CAROUSEL_POSTS_SUCCESS", data: res.data});
             })
             .catch(err => {
-                console.error(err);
                 dispatch({type: "GET_CAROUSEL_POSTS_FAILED", error: err.response.data.error});
             });
     };
@@ -25,7 +24,6 @@ export const getPosts = (params) => {
                 dispatch({type: "GET_POSTS_SUCCESS", data: res.data});
             })
             .catch(err => {
-                console.error(err);
                 dispatch({type: "GET_POSTS_FAILED", error: err.response.data.error});
             });
     };

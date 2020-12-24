@@ -29,7 +29,6 @@ export const Signup = (form) => {
                 } else {
                     error = "Oops une erreur est survenue, veuillez essayer plus tard";
                 }
-                console.log(error);
                 dispatch({type: "AUTH_SIGNUP_FAILED", error: typeof error === "object" ? error.join("\n") : error});
             });
     };
@@ -66,7 +65,6 @@ export const updateUser = (userId, form) => {
                 dispatch({type: "AUTH_UPDATE_SUCCESS", user: res.data});
             })
             .catch(err => {
-                console.log(err);
                 dispatch({type: "AUTH_UPDATE_FAILED", err: err.response.data.error});
             });
     };

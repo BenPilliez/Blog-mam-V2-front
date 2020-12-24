@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {carouselPost, getPosts} from "../../store/actions/postsActions";
 import CustomCarousel from "../custom/carousel/carousel";
-import {Container, Grid, Typography, useMediaQuery} from "@material-ui/core";
+import {Container, Grid, Typography, useMediaQuery,Box} from "@material-ui/core";
 import CustomCard from "../custom/card/customCard";
 import {Pagination} from "@material-ui/lab";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -47,7 +47,7 @@ const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost, load
     };
 
     return (
-        <React.Fragment>
+        <Box style={{minHeight: '100vh'}}>
             <CustomCarousel
                 carouselOptions={
                     {
@@ -113,11 +113,11 @@ const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost, load
                             page={page}
                             onChange={handleChangePage}
                         />
-                    </Grid> : <div>Il n'y a pas encore de post pour le moment</div>
+                    </Grid> : <div style={{minHeight: '100vh', marginTop: 50}}>Il n'y a pas encore de post pour le moment</div>
                     }
                 </Grid>
             </Container>
-        </React.Fragment>
+        </Box>
     );
 };
 

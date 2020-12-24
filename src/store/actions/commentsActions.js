@@ -11,7 +11,6 @@ export const postComment = (form) => {
             .then(res => {
                 dispatch({type: "COMMENT_POST_SUCCESS"});
             }).catch(error => {
-            console.error(error);
             dispatch({type: "COMMENT_POST_FAILED", error});
         });
     };
@@ -24,7 +23,6 @@ export const replyComment = (form) => {
             .then(res => {
                 dispatch({type: "COMMENT_POST_SUCCESS"});
             }).catch(error => {
-            console.error(error);
             dispatch({type: "COMMENT_POST_FAILED", error});
         });
     };
