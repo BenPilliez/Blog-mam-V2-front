@@ -32,7 +32,7 @@ const Mentions = () => {
 
                         <Typography variant={"body1"}>
 
-                            Le site blog-passetemps.benpilliez.com est édité par : <br/>
+                            Le site madeleine-passetemps.benpilliez.com est édité par : <br/>
 
                             Pilliez Benjamin<br/>
                             8, rue depoorter<br/>
