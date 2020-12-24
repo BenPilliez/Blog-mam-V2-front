@@ -29,11 +29,11 @@ const PrivateLife = () => {
                         </Typography>
 
                         <Typography align={"justify"} variant={"body1"}>
-                            La présente politique de confidentialité définit et vous informe de la manière dont Blog
+                            La présente politique de confidentialité définit et vous informe de la manière dont Madeleine
                             passetemps
                             utilise et protège les informations que vous nous transmettez, le cas échéant, lorsque vous
                             utilisez le présent site accessible à partir de l'URL suivante :
-                            www.blog-passetemps.benpilliez.com (ci-après
+                            www.madeleine-passetemps.benpilliez.com (ci-après
                             le « Site »).
 
                             Veuillez noter que cette politique de confidentialité est susceptible d'être modifiée ou
@@ -43,7 +43,7 @@ const PrivateLife = () => {
                             sa
                             mise à jour sera clairement identifiée en tête de la présente politique. Ces modifications
                             engagent l'Utilisateur dès leur mise en ligne. Il convient par conséquent que l'Utilisateur
-                            consulte régulièrement la présente politique de confidentialité et d'utilisation des cookies
+                            consulte régulièrement la présente politique de confidentialité
                             afin de prendre connaissance de ses éventuelles modifications.
                         </Typography>
                     </Grid>
@@ -65,7 +65,7 @@ const PrivateLife = () => {
                         </Typography>
 
                         <Typography align={"justify"} variant={"body1"}>
-                            Seul le Blog Passetemps utlisera vos données à des fins de connexions et de simplification d'envoi de commentaires. Afin de faciliter et de pouvoir supprimer les commentaires indésirable.
+                            Seul le Blog Passetemps utilisera vos données à des fins de connexions et de simplification d'envoi de commentaires. Afin de faciliter et de pouvoir supprimer les commentaires indésirable.
                             Nous ne transmettrons aucune de vos données à un tiers.
                         </Typography>
                     </Grid>
