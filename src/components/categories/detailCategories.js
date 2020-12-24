@@ -8,6 +8,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import CustomCard from "../custom/card/customCard";
 import {Link as RouterLink} from "react-router-dom";
 import {Pagination} from "@material-ui/lab";
+import SEO from "react-seo-component"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -46,11 +47,24 @@ const DetailCategories = (props) => {
     return (
         <React.Fragment>
             <Container className={rootClasses.root}>
+
                 {categoryDetail && onLoad && <CircularProgress color={"primary"}/>}
                 {categoryDetail && !onLoad ?
                     <Grid container justify={"center"}>
+                        <SEO
+                            title={categoryDetail.name}
+                            titleTemplate={'madeleine-passetemps'}
+                            titleSeparator={`-`}
+                            description={`liste des articles de la catégorie ${categoryDetail.name} ` || 'nothin’'}
+                            image={''}
+                            pathname={`https://madeleine-passetemps.benpilliez.com/categorie/${categoryDetail.slug} `}
+                            siteLanguage={'fr'}
+                            siteLocale={'fr_FR'}
+                            twitterUsername={''}
+                        />
+
                         <Grid item xs={12}>
-                            <Typography variant={"h1"} align={"center"}>
+                            <Typography variant={"h3"} align={"center"}>
                                 {categoryDetail.name}
                             </Typography>
                         </Grid>

@@ -7,6 +7,7 @@ import {useSnackbar} from "notistack";
 import Comments from "../comments/comments";
 import FormComment from "../comments/formComment";
 import {Redirect} from "react-router-dom";
+import SEO from "react-seo-component";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -63,6 +64,21 @@ const DetailPost = (props) => {
             <Container className={classes.root}>
                 {loading && <CircularProgress color={"primary"}/>}
                 {post && !loading && <Grid container justify={"center"}>
+                    <SEO
+                        title={post.title}
+                        titleTemplate={'madeleine-passetemps'}
+                        titleSeparator={`-`}
+                        description={`Article de madeleine-passetemps portant le titre ${post.title} ` || 'nothin’'}
+                        image={post.photos[0]}
+                        pathname={`https://madeleine-passetemps.benpilliez.com/post/${post.slug}`}
+                        siteLanguage={'fr'}
+                        siteLocale={'fr_FR'}
+                        author={post.user.username}
+                        publishedDate={post.createdAt}
+                        modifiedDate={post.updatedAt}
+                        article={true}
+                        twitterUsername={''}
+                    />
                     <Grid item xs={12}>
                         <Typography align={"center"} variant={"h4"}>
                             {post.title}
