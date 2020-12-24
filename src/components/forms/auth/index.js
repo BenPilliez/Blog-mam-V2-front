@@ -36,11 +36,11 @@ const AuthForm = ({handleClose}) => {
     const [signIn, setSignIn] = React.useState(true);
     const classes = useStyles();
 
-    const handleChange = () => {
+    const handleChange = React.useCallback(() => {
         setSignUp(s => !s);
         setSignIn(s => !s);
-
-    }
+    }, [setSignIn, setSignUp]
+    )
 
     return (
         <React.Fragment>
