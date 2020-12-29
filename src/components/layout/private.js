@@ -55,7 +55,7 @@ const PrivateLife = () => {
 
                         <Typography align={"justify"} variant={"body1"}>
                             Les données inscrites dans le formulaire d'inscription, ne sont utilisé qu'à des fins de connexions et afin de vous facilité le post de commentaires.
-                            Aucune statistique n'est effectuée avec.
+                            Des statistiques de visites sont effectué avec google analytics.
                         </Typography>
                     </Grid>
 

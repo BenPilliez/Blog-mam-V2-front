@@ -66,9 +66,9 @@ const DetailPost = (props) => {
                 {post && !loading && <Grid container justify={"center"}>
                     <SEO
                         title={post.title}
-                        titleTemplate={'madeleine-passetemps'}
+                        titleTemplate={`detailPost`}
                         titleSeparator={`-`}
-                        description={`Article de madeleine-passetemps portant le titre ${post.title} ` || 'nothin’'}
+                        description={`Article du blog des passetemps de madeleine Faihy portant le titre ${post.title} de la catégorie ${post.category.name} ` || 'nothin’'}
                         image={post.photos[0]}
                         pathname={`https://madeleine-passetemps.benpilliez.com/post/${post.slug}`}
                         siteLanguage={'fr'}

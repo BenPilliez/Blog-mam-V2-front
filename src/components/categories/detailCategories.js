@@ -55,7 +55,7 @@ const DetailCategories = (props) => {
                             title={categoryDetail.name}
                             titleTemplate={'madeleine-passetemps'}
                             titleSeparator={`-`}
-                            description={`liste des articles de la catégorie ${categoryDetail.name} ` || 'nothin’'}
+                            description={`liste des articles de la catégorie ${categoryDetail.name} du blog des passetemps de madeleine faihy ` || 'nothin’'}
                             image={''}
                             pathname={`https://madeleine-passetemps.benpilliez.com/categorie/${categoryDetail.slug} `}
                             siteLanguage={'fr'}

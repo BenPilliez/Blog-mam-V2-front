@@ -79,7 +79,9 @@ const Mentions = () => {
                             href={"mailto:benjamin.piliez@gmail.com"}> benjamin.piliez@gmail.com</Link><br/>
                             Téléphone : 0607760215
                         </Typography>
-
+                    </Grid>
+                    <Divider className={classes.divider}/>
+                    <Grid item xs={12}>
                         <Typography variant={"body1"}>
                             Ce site utilise Google Analytics, un service d'analyse de site internet fourni par Google
                             Inc. (« Google »). Google Analytics utilise des cookies , qui sont des fichiers texte placés
