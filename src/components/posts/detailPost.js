@@ -2,12 +2,14 @@ import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {postComment} from "../../store/actions/commentsActions";
 import {getPostDetail} from "../../store/actions/postsActions";
-import {CardMedia, CircularProgress, Container, Grid, makeStyles, Typography} from "@material-ui/core";
+import {CardActionArea, CardMedia, CircularProgress, Container, Grid, makeStyles, Typography} from "@material-ui/core";
 import {useSnackbar} from "notistack";
 import Comments from "../comments/comments";
 import FormComment from "../comments/formComment";
 import {Redirect} from "react-router-dom";
+import FsLightbox from "fslightbox-react";
 import SEO from "react-seo-component";
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -16,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     media: {
         height: 0,
         paddingTop: "56.25%", // 16:9,
-        margin: theme.spacing(1)
+        margin: theme.spacing(1),
     }
 }));
 
@@ -25,6 +27,8 @@ const DetailPost = (props) => {
     const {post, detailPost, user, postComment, commentSuccess, error} = props;
     const classes = useStyles();
     const [loading, setLoading] = React.useState(true);
+    const [toggler, setToggler] = React.useState(false);
+
     const {enqueueSnackbar} = useSnackbar();
     const params = props.match.params.slug;
 
@@ -68,16 +72,16 @@ const DetailPost = (props) => {
                         title={post.title}
                         titleTemplate={`detailPost`}
                         titleSeparator={`-`}
-                        description={`Article du blog des passetemps de madeleine Faihy portant le titre ${post.title} de la catégorie ${post.category.name} ` || 'nothin’'}
+                        description={`Article du blog des passetemps de madeleine Faihy portant le titre ${post.title} de la catégorie ${post.category.name} ` || "nothin’"}
                         image={post.photos[0]}
                         pathname={`https://madeleine-passetemps.benpilliez.com/post/${post.slug}`}
-                        siteLanguage={'fr'}
-                        siteLocale={'fr_FR'}
+                        siteLanguage={"fr"}
+                        siteLocale={"fr_FR"}
                         author={post.user.username}
                         publishedDate={post.createdAt}
                         modifiedDate={post.updatedAt}
                         article={true}
-                        twitterUsername={''}
+                        twitterUsername={""}
                     />
                     <Grid item xs={12}>
                         <Typography align={"center"} variant={"h4"}>
@@ -86,9 +90,11 @@ const DetailPost = (props) => {
                     </Grid>
                     {post.photos && post.photos.map((item, index) =>
                         <Grid item key={index} xs={index === 0 && post.photos.length > 2 ? 12 : 6}>
-                            <CardMedia className={classes.media}
-                                       image={`${process.env.REACT_APP_BASE_PUBLIC_URL}/${item}`}>
-                            </CardMedia>
+                            <CardActionArea onClick={() => setToggler(!toggler)}>
+                                <CardMedia className={classes.media}
+                                           image={`${process.env.REACT_APP_BASE_PUBLIC_URL}/${item}`}>
+                                </CardMedia>
+                            </CardActionArea>
                         </Grid>
                     )}
                     <Grid item xs={12}>
@@ -101,9 +107,17 @@ const DetailPost = (props) => {
                             {post.createdAt}, {post.user.username}
                         </Typography>
                     </Grid>
+                    {post.photos && !loading && <FsLightbox
+                        toggler={toggler}
+                        type="image"
+                        sources={post.photos ? post.photos.map((item) => {
+                            return `${process.env.REACT_APP_BASE_PUBLIC_URL}/${item}`
+                        }) : null}
+                    /> }
+
                 </Grid>}
                 {post && post.comments && <Comments comments={post.comments}/>}
-                {post && !loading &&  <FormComment submit={handleSubmit}/>}
+                {post && !loading && <FormComment submit={handleSubmit}/>}
                 {error && !loading && <Redirect to={"/404"}/>}
             </Container>
         </React.Fragment>
