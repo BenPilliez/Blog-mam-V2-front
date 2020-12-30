@@ -41,7 +41,6 @@ const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost, load
     }, [setFirstMount, getPosts, getCarouselPost, firstMount]);
 
     const handleChangePage = (event, newPage) => {
-        console.log(newPage);
         setPage(newPage);
         params.home["page"] = newPage - 1;
         getPosts(params.home);
@@ -70,7 +69,7 @@ const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost, load
                         touchMove: false,
                         autoplay: true,
                         speed: 500,
-                        slidesToShow: matches ? 2 : 3,
+                        slidesToShow: carouselItems.length > 2 ? 3 : 1 ,
                         slidesToScroll: 1
                     }}
                 items={carouselItems}
