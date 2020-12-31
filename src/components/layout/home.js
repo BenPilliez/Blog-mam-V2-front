@@ -69,7 +69,7 @@ const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost, load
                         touchMove: false,
                         autoplay: true,
                         speed: 500,
-                        slidesToShow: carouselItems.length > 2 ? 3 : 1 ,
+                        slidesToShow: matches ? 1 : 3 ,
                         slidesToScroll: 1
                     }}
                 items={carouselItems}
