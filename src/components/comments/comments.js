@@ -3,6 +3,7 @@ import {Button, Collapse, Divider, Grid, List, makeStyles, Typography} from "@ma
 import Comment from "./comment";
 import {paginate} from "../../helpers/paginate";
 import {Pagination} from "@material-ui/lab";
+import PropTypes from "prop-types";
 
 const useStyle = makeStyles((theme) => ({
     spacing: {
@@ -46,7 +47,7 @@ const Comments = ({comments}) => {
     };
 
     return (
-        <React.Fragment>
+        <>
             <Divider className={classes.divider}/>
             <Typography variant={"h4"} color={"primary"} className={classes.title}> Commentaires </Typography>
             {comments.length > 0 && <> <List> {paginate(comments, perPage, page).map((comment) => {
@@ -56,7 +57,7 @@ const Comments = ({comments}) => {
                         <List className={classes.listChildren}>
                             <Button
                                 className={classes.button}
-                                onClick={(e) => {
+                                onClick={() => {
                                     handleShowComment(comment.id);
                                 }}
                                 color={"primary"}
@@ -65,7 +66,7 @@ const Comments = ({comments}) => {
                             >
                                 {expanded[comment.id] ? "Masquer les commentaires" : "Afficher les commentaires"}
                             </Button>
-                            {comment.Children.map((children, index) => {
+                            {comment.Children.map((children) => {
                                 return <Collapse
                                     in={expanded[comment.id]}
                                     unmountOnExit
@@ -91,8 +92,12 @@ const Comments = ({comments}) => {
                 </Grid>
             </>
             }
-        </React.Fragment>
+        </>
     );
+};
+
+Comments.PropTypes = {
+    comments: PropTypes.any
 };
 
 export default Comments;

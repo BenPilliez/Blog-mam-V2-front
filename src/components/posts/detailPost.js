@@ -2,14 +2,13 @@ import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {postComment} from "../../store/actions/commentsActions";
 import {getPostDetail} from "../../store/actions/postsActions";
-import {CardActionArea, CardMedia, CircularProgress, Container, Grid, makeStyles, Typography} from "@material-ui/core";
-import {useSnackbar} from "notistack";
 import Comments from "../comments/comments";
 import FormComment from "../comments/formComment";
+import {CardActionArea, CardMedia, CircularProgress, Container, Grid, makeStyles, Typography} from "@material-ui/core";
+import {useSnackbar} from "notistack";
 import {Redirect} from "react-router-dom";
-import FsLightbox from "fslightbox-react";
 import SEO from "react-seo-component";
-
+import FsLightbox from "fslightbox-react";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -64,7 +63,7 @@ const DetailPost = (props) => {
     };
 
     return (
-        <React.Fragment>
+        <>
             <Container className={classes.root}>
                 {loading && <CircularProgress color={"primary"}/>}
                 {post && !loading && <Grid container justify={"center"}>
@@ -111,16 +110,16 @@ const DetailPost = (props) => {
                         toggler={toggler}
                         type="image"
                         sources={post.photos ? post.photos.map((item) => {
-                            return `${process.env.REACT_APP_BASE_PUBLIC_URL}/${item}`
+                            return `${process.env.REACT_APP_BASE_PUBLIC_URL}/${item}`;
                         }) : null}
-                    /> }
+                    />}
 
                 </Grid>}
                 {post && post.comments && <Comments comments={post.comments}/>}
                 {post && !loading && <FormComment submit={handleSubmit}/>}
                 {error && !loading && <Redirect to={"/404"}/>}
             </Container>
-        </React.Fragment>
+        </>
     );
 
 };

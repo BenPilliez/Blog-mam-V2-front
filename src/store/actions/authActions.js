@@ -74,7 +74,7 @@ export const UpdatePassword = (id, form) => {
     return (dispatch, getState, {axiosInstance}) => {
         dispatch(sendForm());
         axiosInstance({url: `${process.env.REACT_APP_BASE_URL}/users/password/${id}`, data: form, method:'PUT'})
-            .then(res => {
+            .then(() => {
                 dispatch({type:'AUTH_UPDATE_PASSWORD_SUCCESS', success:true})
             })
             .catch(error => {
@@ -87,10 +87,10 @@ export const DeleteUser = (id) => {
     return (dispatch, getState, {axiosInstance}) => {
         dispatch(sendForm());
         axiosInstance({url: `${process.env.REACT_APP_BASE_URL}/users`, data: {id: id}, method: "DELETE"})
-            .then(res => {
+            .then(() => {
                 dispatch({type: "AUTH_DELETE_USER", success:true});
             })
-            .catch(err => {
+            .catch(() => {
                 dispatch({type: "AUTH_DELETE_FAILED", error: true});
             });
     };

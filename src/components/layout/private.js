@@ -29,7 +29,8 @@ const PrivateLife = () => {
                         </Typography>
 
                         <Typography align={"justify"} variant={"body1"}>
-                            La présente politique de confidentialité définit et vous informe de la manière dont Madeleine
+                            La présente politique de confidentialité définit et vous informe de la manière dont
+                            Madeleine
                             passetemps
                             utilise et protège les informations que vous nous transmettez, le cas échéant, lorsque vous
                             utilisez le présent site accessible à partir de l'URL suivante :
@@ -54,18 +55,21 @@ const PrivateLife = () => {
                         </Typography>
 
                         <Typography align={"justify"} variant={"body1"}>
-                            Les données inscrites dans le formulaire d'inscription, ne sont utilisé qu'à des fins de connexions et afin de vous facilité le post de commentaires.
+                            Les données inscrites dans le formulaire d'inscription, ne sont utilisé qu'à des fins de
+                            connexions et afin de vous facilité le post de commentaires.
                             Des statistiques de visites sont effectué avec google analytics.
                         </Typography>
                     </Grid>
 
                     <Grid item xs={12}>
                         <Typography variant={"h4"}>
-                           Utilisation et transmission de vos données personnelles
+                            Utilisation et transmission de vos données personnelles
                         </Typography>
 
                         <Typography align={"justify"} variant={"body1"}>
-                            Seul le Blog Passetemps utilisera vos données à des fins de connexions et de simplification d'envoi de commentaires. Afin de faciliter et de pouvoir supprimer les commentaires indésirable.
+                            Seul le Blog Passetemps utilisera vos données à des fins de connexions et de simplification
+                            d'envoi de commentaires. Afin de faciliter et de pouvoir supprimer les commentaires
+                            indésirable.
                             Nous ne transmettrons aucune de vos données à un tiers.
                         </Typography>
                     </Grid>
@@ -76,7 +80,8 @@ const PrivateLife = () => {
                         </Typography>
 
                         <Typography align={"justify"} variant={"body1"}>
-                            Vos données de connexion sont conservées pour une durée indéfinie. Vous pouvez à tout moment supprimer votre compte.
+                            Vos données de connexion sont conservées pour une durée indéfinie. Vous pouvez à tout moment
+                            supprimer votre compte.
                         </Typography>
                     </Grid>
                 </Grid>

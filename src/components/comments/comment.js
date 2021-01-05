@@ -16,14 +16,15 @@ import {
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import FormComment from "./formComment";
 import {replyComment} from "../../store/actions/commentsActions";
+import PropTypes from 'prop-types';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     content: {
         display: "flex",
         flexDirection: "column"
     },
     marginLeft: {
-        width:'100%'
+        width: "100%"
     },
     float: {
         float: "right"
@@ -125,6 +126,14 @@ const mapDispatchToProps = (dispatch) => {
     return {
         reply: (form) => dispatch(replyComment(form))
     };
+};
+
+Comment.propTypes = {
+    comment: PropTypes.object,
+    user: PropTypes.object,
+    reply: PropTypes.func,
+    addReply:PropTypes.bool,
+
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comment);

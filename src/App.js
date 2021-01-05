@@ -1,15 +1,16 @@
-import React from "react";
-import NavBar from "./components/navigations/navbar";
-import {createMuiTheme, CssBaseline, Grid, makeStyles, ThemeProvider} from "@material-ui/core";
-import AuthForm from "./components/forms/auth";
-import Footer from "./components/layout/footer";
+import React, {Suspense} from "react";
+import {createMuiTheme, CssBaseline, makeStyles, ThemeProvider, CircularProgress} from "@material-ui/core";
 import {BrowserRouter} from "react-router-dom";
 import {deepPurple, indigo, purple} from "@material-ui/core/colors";
-import CustomDialog from "./components/custom/customDialog";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {SnackbarProvider} from "notistack";
 import Router from "./routes/routes";
 
+const CustomDialog = React.lazy(() => import("./components/custom/customDialog"));
+const Footer = React.lazy(() => import("./components/layout/footer"));
+const AuthForm = React.lazy(() => import("./components/forms/auth"));
+const NavBar = React.lazy(() => import("./components/navigations/navbar"));
+const Grid = React.lazy(() => import("@material-ui/core/Grid"));
 
 const useStyles = makeStyles((theme) => ({
     rootContent: {
@@ -60,42 +61,44 @@ function App() {
     };
 
     return (
-        <BrowserRouter>
-            <div className="App">
-                <ThemeProvider theme={theme}>
-                    <SnackbarProvider
-                        ref={notistackRef}
-                        maxSnack={3}
-                        action={(key) => (
-                            <FontAwesomeIcon icon={"times"} onClick={onClickDismiss(key)}/>
-                        )}
-                    >
-                        <CssBaseline/>
-                        <Grid container>
-                            <Grid item xs={12}>
+        <Suspense fallback={<CircularProgress/>}>
+            <BrowserRouter>
+                <div className="App">
+                    <ThemeProvider theme={theme}>
+                        <SnackbarProvider
+                            ref={notistackRef}
+                            maxSnack={3}
+                            action={(key) => (
+                                <FontAwesomeIcon icon={"times"} onClick={onClickDismiss(key)}/>
+                            )}
+                        >
+                            <CssBaseline/>
+                            <Grid container>
+                                <Grid item xs={12}>
 
-                                <NavBar isDark={darkState} handleChange={handleThemeChange}
-                                        handleOpen={() => setOpen(true)}
-                                />
-                                <main className={classes.rootContent}>
-                                    <Router/>
-                                </main>
-                                <footer>
-                                    <Footer/>
-                                </footer>
-                                <CustomDialog
-                                    handleClose={handleClose}
-                                    title={"Connexion / Inscription"}
-                                    isOpen={open}
-                                    fullScreen={true}>
-                                    <AuthForm handleClose={handleClose}/>
-                                </CustomDialog>
+                                    <NavBar isDark={darkState} handleChange={handleThemeChange}
+                                            handleOpen={() => setOpen(true)}
+                                    />
+                                    <main className={classes.rootContent}>
+                                        <Router/>
+                                    </main>
+                                    <footer>
+                                        <Footer/>
+                                    </footer>
+                                    <CustomDialog
+                                        handleClose={handleClose}
+                                        title={"Connexion / Inscription"}
+                                        isOpen={open}
+                                        fullScreen={true}>
+                                        <AuthForm handleClose={handleClose}/>
+                                    </CustomDialog>
+                                </Grid>
                             </Grid>
-                        </Grid>
-                    </SnackbarProvider>
-                </ThemeProvider>
-            </div>
-        </BrowserRouter>
+                        </SnackbarProvider>
+                    </ThemeProvider>
+                </div>
+            </BrowserRouter>
+        </Suspense>
     );
 }
 
