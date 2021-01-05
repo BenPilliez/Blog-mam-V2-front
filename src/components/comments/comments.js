@@ -3,7 +3,6 @@ import {Button, Collapse, Divider, Grid, List, makeStyles, Typography} from "@ma
 import Comment from "./comment";
 import {paginate} from "../../helpers/paginate";
 import {Pagination} from "@material-ui/lab";
-import PropTypes from "prop-types";
 
 const useStyle = makeStyles((theme) => ({
     spacing: {
@@ -94,10 +93,6 @@ const Comments = ({comments}) => {
             }
         </>
     );
-};
-
-Comments.PropTypes = {
-    comments: PropTypes.any
 };
 
 export default Comments;
