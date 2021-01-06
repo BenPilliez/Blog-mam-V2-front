@@ -69,8 +69,8 @@ const DetailPost = (props) => {
                 {post && !loading && <Grid container justify={"center"}>
                     <SEO
                         title={post.title}
-                        titleTemplate={`detailPost`}
-                        titleSeparator={`-`}
+                        titleTemplate={``}
+                        titleSeparator={``}
                         description={`Article du blog des passetemps de madeleine Faihy portant le titre ${post.title} de la catégorie ${post.category.name} ` || "nothin’"}
                         image={post.photos[0]}
                         pathname={`https://madeleine-passetemps.benpilliez.com/post/${post.slug}`}
@@ -83,13 +83,13 @@ const DetailPost = (props) => {
                         twitterUsername={""}
                     />
                     <Grid item xs={12}>
-                        <Typography align={"center"} variant={"h4"}>
+                        <Typography align={"center"} variant={"h1"}>
                             {post.title}
                         </Typography>
                     </Grid>
                     {post.photos && post.photos.map((item, index) =>
                         <Grid item key={index} xs={index === 0 && post.photos.length > 2 ? 12 : 6}>
-                            <CardActionArea onClick={() => setToggler(!toggler)}>
+                            <CardActionArea aria-label={"ImageShow"} onClick={() => setToggler(!toggler)}>
                                 <CardMedia className={classes.media}
                                            image={`${process.env.REACT_APP_BASE_PUBLIC_URL}/${item}`}>
                                 </CardMedia>

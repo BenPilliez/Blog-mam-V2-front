@@ -15,9 +15,6 @@ const useStyle = makeStyles((theme) => ({
         backgroundColor: theme.palette.primary.main,
         marginTop: theme.spacing(10),
     },
-    title: {
-        marginTop: theme.spacing(9)
-    },
     button: {
         margin: "0 auto",
         width: "100%"
@@ -48,7 +45,6 @@ const Comments = ({comments}) => {
     return (
         <>
             <Divider className={classes.divider}/>
-            <Typography variant={"h4"} color={"primary"} className={classes.title}> Commentaires </Typography>
             {comments.length > 0 && <> <List> {paginate(comments, perPage, page).map((comment) => {
                     return <React.Fragment key={comment.id}>
                         <Comment comment={comment} addReply={true}/>

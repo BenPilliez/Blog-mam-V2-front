@@ -60,7 +60,7 @@ const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost, load
                 author={"Madeleine faihy"}
                 publishedDate={Date.now()}
                 modifiedDate={Date.now()}
-            />
+                twitterUsername={"Madeleine Faihy"}/>
             <CustomCarousel
                 carouselOptions={
                     {
@@ -69,7 +69,7 @@ const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost, load
                         touchMove: false,
                         autoplay: true,
                         speed: 500,
-                        slidesToShow: matches ? 1 : 3 ,
+                        slidesToShow: matches ? 1 : 3,
                         slidesToScroll: 1
                     }}
                 items={carouselItems}
@@ -92,7 +92,7 @@ const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost, load
                                 }
                                 content={{
                                     content: <>
-                                        <Typography variant={"subtitle1"} color={"textSecondary"}>
+                                        <Typography variant={"body1"} color={"textSecondary"}>
                                             {item.createdAt}
                                         </Typography>
                                         <Typography variant={"body1"} color={"textPrimary"}>
@@ -107,8 +107,9 @@ const Home = ({carouselItems, posts, getPosts, pagination, getCarouselPost, load
                                             label: "En voir plus",
                                             props: {
                                                 component: RouterLink,
+                                                ariaLabel: "Voir plus",
                                                 to: `/post/${item.slug}`,
-                                                size: "small",
+                                                size: "medium",
                                                 color: "primary",
                                                 startIcon: <FontAwesomeIcon icon={"eye"}/>
                                             }

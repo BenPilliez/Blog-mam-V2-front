@@ -52,8 +52,8 @@ const DetailCategories = (props) => {
                     <Grid container justify={"center"}>
                         <SEO
                             title={categoryDetail.name}
-                            titleTemplate={"madeleine-passetemps"}
-                            titleSeparator={`-`}
+                            titleTemplate={""}
+                            titleSeparator={``}
                             description={`liste des articles de la catégorie ${categoryDetail.name} du blog des passetemps de madeleine faihy ` || "nothin’"}
                             image={""}
                             pathname={`https://madeleine-passetemps.benpilliez.com/categorie/${categoryDetail.slug} `}
@@ -63,7 +63,7 @@ const DetailCategories = (props) => {
                         />
 
                         <Grid item xs={12}>
-                            <Typography variant={"h3"} align={"center"}>
+                            <Typography variant={"body1"} align={"center"}>
                                 {categoryDetail.name}
                             </Typography>
                         </Grid>
@@ -83,7 +83,7 @@ const DetailCategories = (props) => {
                                     }
                                     content={{
                                         content: <>
-                                            <Typography variant={"subtitle1"} color={"textSecondary"}>
+                                            <Typography variant={"body2"} color={"textSecondary"}>
                                                 {item.createdAt}
                                             </Typography>
                                             <Typography variant={"body1"} color={"textPrimary"}>
@@ -99,7 +99,7 @@ const DetailCategories = (props) => {
                                                 props: {
                                                     component: RouterLink,
                                                     to: `/post/${item.slug}`,
-                                                    size: "small",
+                                                    size: "medium",
                                                     color: "primary",
                                                     startIcon: <FontAwesomeIcon icon={"eye"}/>
                                                 }

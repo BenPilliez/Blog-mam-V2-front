@@ -15,7 +15,7 @@ import {Link as RouterLink} from "react-router-dom";
 
 const useStyle = makeStyles((theme) => ({
     card: {
-        [theme.breakpoints.down("sm") || theme.breakpoints.down("xs")  ] : {
+        [theme.breakpoints.down("sm") || theme.breakpoints.down("xs")]: {
             minHeight: 400
         },
         minHeight: 600,
@@ -43,7 +43,7 @@ const useStyle = makeStyles((theme) => ({
         margin: "15px 0",
         fontSize: "25px",
         lineHeight: "32px",
-        fontWeight: 'bold',
+        fontWeight: "bold",
         color: theme.palette.secondary.main
     },
     list: {
@@ -63,14 +63,14 @@ const CarouselItem = ({item}) => {
     const classes = useStyle();
     return (
         <React.Fragment>
-            <CardActionArea component={RouterLink} to={`/post/${item.slug}`}>
+            <CardActionArea aria-label={"Lire le post"} component={RouterLink} to={`/post/${item.slug}`}>
                 <Card className={classes.card}
                       style={{backgroundImage: `url(${process.env.REACT_APP_BASE_PUBLIC_URL}/${item.photos[0]})`}}>
                     <CardContent className={classes.cardContent}>
-                        <Typography variant={"subtitle2"}>
+                        <Typography variant={"body1"}>
                             <span className={classes.span}>{item.category.name}</span>
                         </Typography>
-                        <Typography variant={"h3"} className={classes.title}>
+                        <Typography variant={"body1"} className={classes.title}>
                             {item.title}
                         </Typography>
                         <List className={classes.list}>
