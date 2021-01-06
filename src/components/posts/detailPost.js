@@ -8,7 +8,8 @@ import {CardActionArea, CardMedia, CircularProgress, Container, Grid, makeStyles
 import {useSnackbar} from "notistack";
 import {Redirect} from "react-router-dom";
 import SEO from "react-seo-component";
-import FsLightbox from "fslightbox-react";
+
+const FsLightbox = React.lazy(() => import("fslightbox-react"));
 
 const useStyles = makeStyles((theme) => ({
     root: {

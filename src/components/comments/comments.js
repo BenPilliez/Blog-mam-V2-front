@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Collapse, Divider, Grid, List, makeStyles, Typography} from "@material-ui/core";
+import {Button, Collapse, Divider, Grid, List, makeStyles} from "@material-ui/core";
 import Comment from "./comment";
 import {paginate} from "../../helpers/paginate";
 import {Pagination} from "@material-ui/lab";

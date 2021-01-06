@@ -2,7 +2,7 @@ import React from "react";
 import {Field, Form, Formik} from "formik";
 import {TextField} from "formik-material-ui";
 import * as Yup from "yup";
-import {Box, Button, makeStyles, Typography} from "@material-ui/core";
+import {Box, Button, makeStyles} from "@material-ui/core";
 
 const validateSchema = Yup.object({
     content: Yup
@@ -34,7 +34,7 @@ const FormComment = (props) => {
     const {submit} = props;
 
     return (
-        <React.Fragment>
+        <>
             <Formik
                 validateOnChange
                 initialValues={initialValue}
@@ -75,7 +75,7 @@ const FormComment = (props) => {
                 )}
 
             </Formik>
-        </React.Fragment>
+        </>
     );
 };
 
